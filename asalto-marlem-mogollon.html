@@ -1,34 +1,133 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alcalde de Sullana sufre violento asalto</title>
-    <style>
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-        }
-        h1 {
-            color: #0044cc;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alcalde de Sullana sufre violento asalto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background-color: #0044cc;
+      color: white;
+      padding: 20px;
+    }
+    .logo {
+      width: 180px;
+      margin: 10px auto;
+    }
+    .btn-home {
+      margin: 20px;
+    }
+    .btn-home a {
+      background-color: #0044cc;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn-home a:hover {
+      background-color: #002a80;
+    }
+    #stream {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 600px;
+      height: 300px;
+    }
+    .content {
+      padding: 20px;
+      text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+    }
+    footer {
+      background-color: #eaeaea;
+      padding: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Alcalde de Sullana sufre violento asalto</h1>
-    <img src="http://imgfz.com/i/UD7VN8A.jpeg" alt="Alcalde de Sullana">
-    <p>Sucedió la tarde del domingo 18 de mayo. El alcalde de Sullana, Marlem Mogollón Meca, fue víctima del crimen organizado mientras almorzaba en una chacra familiar en Chulucanas, región Piura.</p>
-    <p>De acuerdo a la información obtenida, seis personas fuertemente armadas y con los rostros cubiertos llegaron en motocicletas hasta el lugar donde se encontraba el burgomaestre, acompañado de su esposa y su madre de 93 años. Los delincuentes los redujeron, apuntando directamente a la cabeza del alcalde amenazándolo de muerte a él y a su madre, golpearon a su esposa en la cabeza, robando pertenencias, celulares, dinero y documentos personales.</p>
-    <p>La familia ha expresado su preocupación por la seguridad de la autoridad edil y responsabiliza al Ministerio del Interior por no brindar garantías, a pesar de las amenazas previas recibidas. Este ataque se da en medio del proceso de investigación por la caída de la Caja Municipal de Sullana.</p>
-    <p>Se exige una investigación profunda para dar con los responsables. “Esto no ha sido un asalto común, ha sido un acto de amedrentamiento”, declaró un familiar cercano.</p>
-    <p>La Policía Nacional aún no ha emitido un pronunciamiento oficial. La inseguridad en la región continúa siendo un problema urgente.</p>
+
+  <header>
+    <h1>Stereo M 101.5 FM</h1>
+    <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo">
+  </header>
+
+  <!-- Botón para volver al inicio -->
+  <div class="btn-home">
+    <a href="index.html">Volver al Inicio</a>
+  </div>
+
+  <!-- Reproductor de la radio -->
+  <div id="stream"></div>
+
+  <!-- Contenido de la noticia -->
+  <div class="content">
+    <h2>Alcalde de Sullana sufre violento asalto: lo encañonan frente a su madre y esposa</h2>
+    <img src="http://imgfz.com/i/UD7VN8A.jpeg" alt="Foto de la noticia">
+    <p>
+      El alcalde de Sullana, Marlem Mogollón Meca, fue víctima del crimen organizado, sufriendo un violento asalto el domingo 18 de mayo mientras almorzaba en una chacra familiar en Chulucanas.
+    </p>
+    <p>
+      Según la información obtenida, seis personas armadas y encapuchadas llegaron en motos, lo encañonaron, amenazaron a su madre de 93 años, golpearon a su esposa y robaron pertenencias, dinero y documentos personales.
+    </p>
+    <p>
+      La familia del alcalde responsabiliza al Ministerio del Interior por la falta de garantías, ya que Mogollón venía siendo amenazado en semanas anteriores, en medio del caso de la liquidación de la Caja Municipal de Sullana.
+    </p>
+    <p>
+      Exigen una investigación urgente. “Esto no ha sido un asalto común, ha sido un acto de amedrentamiento”, señaló un familiar. La Policía aún no ha emitido un comunicado oficial.
+    </p>
+    <p>
+      Esta situación vuelve a mostrar la inseguridad en la región y la necesidad urgente de acciones concretas contra el crimen organizado.
+    </p>
+  </div>
+
+  <footer>
+    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+  </footer>
+
+  <!-- Scripts del reproductor -->
+  <script src="https://sistemahost.com/playergenerator/js/jquery-3.2.1.min.js"></script>
+  <script src="https://sistemahost.com/playergenerator/js/player.js"></script>
+  <script>
+    $('#stream').lunaradio({
+      streamurl: 'http://sonic.globalstream.pro/8108/',
+      radioname: 'Stereo M',
+      coverimage: '',
+      onlycoverimage: false,
+      userinterface: 'big',
+      backgroundcolor: '#ffffff',
+      fontcolor: '#000000',
+      hightlightcolor: '#6c757d',
+      fontname: 'Raleway',
+      googlefont: 'Raleway:wght@100',
+      fontratio: '0.4',
+      scroll: 'true',
+      coverstyle: 'animated',
+      usevisualizer: 'real',
+      visualizertype: '1',
+      streamtype: 'shoutcast2',
+      shoutcastpath: '/stream',
+      shoutcastid: '1',
+      autoplay: 'true',
+      metadatainterval: '5000',
+      volume: '100',
+      usestreamcorsproxy: 'true'
+    });
+  </script>
+
 </body>
 </html>
