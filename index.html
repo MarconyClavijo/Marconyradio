@@ -1,249 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>🎧Stereo M 101.5 FM</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to right, #ff5f6d, #ffc371);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      text-align: center;
-      padding: 30px 20px 20px;
-      background: #000000aa;
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
-    }
-
-    header p {
-      font-size: 1.2em;
-      margin-top: 0;
-    }
-
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 20px;
-    }
-
-    .left, .right {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .player-box {
-      background: #ffffffdd;
-      color: #000;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      text-align: center;
-    }
-
-    .player-box h2 {
-      margin: 0 0 10px;
-      font-size: 1.4em;
-    }
-
-    .song-title {
-      font-weight: bold;
-      font-size: 1.2em;
-      color: #ff5722;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 15px;
-      border-radius: 10px;
-    }
-
-    .form-box {
-      background: #ffffffee;
-      color: #000;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .form-box input, .form-box textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    .form-box button {
-      background: #ff5722;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      margin-top: 10px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .messages-box {
-      background: #ffffffcc;
-      color: #000;
-      padding: 20px;
-      border-radius: 15px;
-      height: 100%;
-      max-height: 400px;
-      overflow-y: auto;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .message {
-      background: #fff3e0;
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 8px;
-    }
-
-    .buttons {
-      text-align: center;
-      margin: 30px 0;
-    }
-
-    .buttons a {
-      background: #4caf50;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      margin: 10px;
-      display: inline-block;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000000aa;
-      color: #fff;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stereo M 101.5 FM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #0044cc;
+            color: white;
+            padding: 20px;
+        }
+        img.logo {
+            width: 180px;
+            margin: 10px auto;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        .tab-button {
+            background-color: #0066ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+        }
+        .tab-button:hover {
+            background-color: #0044cc;
+        }
+        .tab-button.active {
+            background-color: #002a80;
+        }
+        #stream {
+            margin: 30px auto;
+            width: 90%;
+            max-width: 600px;
+            height: 300px;
+        }
+        .buttons {
+            margin: 20px;
+        }
+        .buttons a {
+            display: inline-block;
+            background-color: #0044cc;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        .buttons a:hover {
+            background-color: #002a80;
+        }
+        footer {
+            background-color: #eaeaea;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .tab-content {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+            padding: 0 15px;
+        }
+        .tab-content h2 {
+            color: #0044cc;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .news-article {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+        .news-article h3 {
+            color: #003399;
+            margin-bottom: 8px;
+        }
+        .news-article img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .news-article p {
+            line-height: 1.5em;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>Stereo M 101.5 FM</h1>
+        <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
+        <nav>
+            <button class="tab-button active" data-tab="home">Inicio</button>
+            <button class="tab-button" data-tab="news">Noticias</button>
+        </nav>
+    </header>
 
-<header>
-  <h1>🎧 Stereo M 101.5 FM</h1>
-  <p>¡Música en vivo las 24 horas!</p>
-</header>
+    <div id="home" class="tab-content active">
+        <div id="stream"></div>
 
-<div class="container">
-  <div class="left">
-    <div class="player-box">
-      <h2>Ahora suena:</h2>
-      <div class="song-title" id="current-song">Cargando...</div>
-      <audio id="radio" controls autoplay>
-        <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-        Tu navegador no soporta audio.
-      </audio>
+        <div class="buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">Descarga la App</a>
+            <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">Facebook</a>
+            <a href="https://wa.me/51984412853" target="_blank">WhatsApp Oyentes</a>
+            <a href="https://wa.me/51942883375" target="_blank">Contratos Publicidad</a>
+        </div>
     </div>
 
-    <div class="form-box">
-      <h3>💌 Deja tu saludo</h3>
-      <form id="greeting-form">
-        <input type="text" id="nombre" placeholder="Tu nombre" required>
-        <textarea id="mensaje" placeholder="Escribe tu saludo aquí..." required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
+    <div id="news" class="tab-content" style="display:none;">
+        <h2>Noticias Diarias</h2>
+        <div id="news-list">
+            <article class="news-article">
+                <h3>Alcalde de Sullana víctima de violento asalto armado en su chacra familiar</h3>
+                <img src="http://imgfz.com/i/UD7VN8A.jpeg" alt="Alcalde de Sullana asaltado" />
+                <p>📣 Sucedió la tarde de este domingo 18 de mayo. El alcalde de Sullana, Marlem Mogollón Meca, fue víctima del crimen organizado, sufriendo un violento asalto la tarde de hoy mientras almorzaba en una chacra familiar en la ciudad de Chulucanas, región Piura.</p>
+                <p>De acuerdo a la información obtenida, seis personas fuertemente armadas y con los rostros cubiertos llegaron en motocicletas hasta el lugar donde se encontraba el burgomaestre, acompañado de su esposa y su madre de 93 años. Los delincuentes los redujeron, apuntando directamente a la cabeza del alcalde amenazándolo de muerte a él y a su madre, golpearon a su esposa en la cabeza, robando pertenencias, celulares, dinero y documentos personales.</p>
+                <p>La familia del alcalde Marlem Mogollón ha expresado su preocupación por la seguridad de la autoridad edil y responsabiliza al Ministerio del Interior y al general de la Macro Región por no brindar las garantías necesarias, siendo los responsables de la seguridad ciudadana, pese a que —según declararon— el alcalde viene siendo víctima de amenazas y actos de hostigamiento en las últimas semanas, justo cuando se iniciarán las rondas de declaraciones de los principales implicados en la denuncia por la caída, intervención y liquidación de la Caja Municipal de Sullana.</p>
+                <p>Asimismo, exigen a las autoridades pertinentes se realicen las investigaciones de ley para dar con los responsables de este acto delictivo. "Esto no ha sido un asalto común, ha sido un acto de amedrentamiento” señaló un familiar cercano.</p>
+                <p>Hasta el momento, la Policía Nacional no ha emitido un pronunciamiento oficial sobre el hecho. Esta situación pone nuevamente en evidencia el nivel de inseguridad que se vive en la región y la urgente necesidad de reforzar las estrategias de lucha contra el crimen organizado. Expresamos nuestra solidaridad hacia todas las víctimas de la inseguridad y demandamos justicia para que estos actos no queden en la impunidad.</p>
+                <p>Seguiremos informando conforme se conozcan más detalles del caso.</p>
+            </article>
+        </div>
     </div>
 
-    <div class="buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descargar App</a>
-      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-      <a href="https://wa.me/51984412853" target="_blank">💬 WhatsApp Oyentes</a>
-      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad</a>
-    </div>
-  </div>
+    <footer>
+        Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+    </footer>
 
-  <div class="right">
-    <div class="messages-box">
-      <h3>📢 Saludos en vivo</h3>
-      <div id="mensajes"></div>
-    </div>
-  </div>
-</div>
+    <script src="https://sistemahost.com/playergenerator/js/jquery-3.2.1.min.js"></script>
+    <script src="https://sistemahost.com/playergenerator/js/player.js"></script>
+    <script>
+        $('#stream').lunaradio({
+            streamurl: 'http://sonic.globalstream.pro/8108/',
+            radioname: 'Stereo M',
+            coverimage: '',
+            onlycoverimage: false,
+            userinterface: 'big',
+            backgroundcolor: '#ffffff',
+            fontcolor: '#000000',
+            hightlightcolor: '#6c757d',
+            fontname: 'Raleway',
+            googlefont: 'Raleway:wght@100',
+            fontratio: '0.4',
+            scroll: 'true',
+            coverstyle: 'animated',
+            usevisualizer: 'real',
+            visualizertype: '1',
+            streamtype: 'shoutcast2',
+            shoutcastpath: '/stream',
+            shoutcastid: '1',
+            autoplay: 'true',
+            metadatainterval: '5000',
+            volume: '100',
+            usestreamcorsproxy: 'true'
+        });
 
-<footer>
-  En Sullana todos dicen: ¡Stereo M, 101.5 FM… Me gusta!
-</footer>
+        // Código para cambiar entre pestañas Inicio y Noticias
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
 
-<script>
-  // Mostrar título de canción desde servidor SHOUTcast
-  async function fetchMetadata() {
-    try {
-      const res = await fetch('http://sonic.globalstream.pro:8108/stats?sid=1&json=1');
-      const data = await res.json();
-      document.getElementById('current-song').innerText = data.songtitle || 'Sin título';
-    } catch (e) {
-      document.getElementById('current-song').innerText = 'No disponible';
-    }
-  }
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tab = button.getAttribute('data-tab');
 
-  setInterval(fetchMetadata, 10000);
-  fetchMetadata();
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
 
-  // Guardar y mostrar saludos
-  const form = document.getElementById('greeting-form');
-  const mensajesDiv = document.getElementById('mensajes');
-
-  function cargarMensajes() {
-    const mensajes = JSON.parse(localStorage.getItem('saludos')) || [];
-    mensajesDiv.innerHTML = '';
-    mensajes.forEach(msg => {
-      const div = document.createElement('div');
-      div.className = 'message';
-      div.innerHTML = `<strong>${msg.nombre}</strong>: ${msg.texto}`;
-      mensajesDiv.appendChild(div);
-    });
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value;
-    const mensaje = document.getElementById('mensaje').value;
-    const nuevo = { nombre: nombre.trim(), texto: mensaje.trim() };
-
-    if (nuevo.nombre && nuevo.texto) {
-      const mensajes = JSON.parse(localStorage.getItem('saludos')) || [];
-      mensajes.push(nuevo);
-      localStorage.setItem('saludos', JSON.stringify(mensajes));
-      form.reset();
-      cargarMensajes();
-    }
-  });
-
-  cargarMensajes();
-</script>
-
+                tabContents.forEach(content => {
+                    if (content.id === tab) {
+                        content.style.display = 'block';
+                        content.classList.add('active');
+                    } else {
+                        content.style.display = 'none';
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
