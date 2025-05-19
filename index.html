@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,72 +8,141 @@
   <style>
     body {
       font-family: 'Raleway', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: #fff;
       margin: 0;
       padding: 20px;
       text-align: center;
     }
+
     header {
-      background-color: #6c757d;
-      color: white;
-      padding: 1rem;
-      border-radius: 10px;
+      background-color: #000000aa;
+      color: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+
     .player-container {
-      margin-top: 20px;
+      margin: 30px auto;
+      max-width: 800px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
     }
+
     .form-section {
       margin-top: 40px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #ffffff;
+      color: #333;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
     input, textarea {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin-top: 10px;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 16px;
     }
+
     button {
-      background-color: #6c757d;
+      background-color: #ff4500;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 30px;
       border: none;
-      border-radius: 5px;
-      margin-top: 10px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #e63900;
+    }
+
+    .buttons {
+      margin: 30px 0;
+    }
+
+    .buttons a {
+      display: inline-block;
+      background-color: #ffffff22;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid white;
+      transition: background 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #ffffff44;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Radio Stereo M</h1>
-    <p>¡Disfruta de nuestra música en vivo!</p>
-  </header>  <div class="player-container">
+    <h1>🎧 Radio Stereo M 101.5 FM</h1>
+    <p>¡Disfruta de nuestra música en vivo las 24 horas!</p>
+  </header>
+
+  <div class="player-container">
     <div id="stream" style="width:100%; height:300px;"></div>
-  </div>  <div class="form-section">
-    <h2>¡Pide tu canción!</h2>
+  </div>
+
+  <div class="buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📱 Descargar App</a>
+    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+    <a href="https://wa.me/51984412853" target="_blank">💬 WhatsApp Oyentes</a>
+    <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad</a>
+  </div>
+
+  <div class="form-section">
+    <h2>🎵 ¡Pide tu canción!</h2>
     <form action="https://formsubmit.co/tucorreo@ejemplo.com" method="POST">
       <input type="text" name="nombre" placeholder="Tu nombre" required>
       <input type="text" name="cancion" placeholder="Canción que deseas" required>
       <textarea name="comentario" rows="4" placeholder="Comentario opcional"></textarea>
       <button type="submit">Enviar Pedido</button>
     </form>
-  </div>  <!-- Scripts del reproductor -->  <script src="https://sistemahost.com/playergenerator/js/jquery-3.2.1.min.js"></script>  <script src="https://sistemahost.com/playergenerator/js/player.js"></script>  <script> 
+  </div>
+
+  <footer>
+    En Sullana todos dicen: ¡Stereo M, 101.5 FM… Me gusta!
+  </footer>
+
+  <!-- Scripts del reproductor -->
+  <script src="https://sistemahost.com/playergenerator/js/jquery-3.2.1.min.js"></script>
+  <script src="https://sistemahost.com/playergenerator/js/player.js"></script>
+  <script>
     $('#stream').lunaradio({
-      streamurl: 'http://sonic.globalstream.pro:8108',
+      streamurl: 'http://sonic.globalstream.pro/8108',
       radioname: 'Stereo M',
       coverimage: '',
       onlycoverimage: false,
       userinterface: 'big',
       backgroundcolor: '#ffffff',
       fontcolor: '#000000',
-      hightlightcolor: '#6c757d',
+      hightlightcolor: '#ff4500',
       fontname: 'Raleway',
-      googlefont: 'Raleway:wght@100',
+      googlefont: 'Raleway:wght@300;600',
       fontratio: '0.4',
       scroll: 'true',
       coverstyle: 'animated',
@@ -86,5 +156,7 @@
       volume: '100',
       usestreamcorsproxy: 'true'
     });
-  </script></body>
+  </script>
+</body>
 </html>
+
