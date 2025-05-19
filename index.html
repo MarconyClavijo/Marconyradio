@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio La N - Suena Diferente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: #fff8f8;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #cc0000;
-            color: white;
-            padding: 20px;
-        }
-        img.logo {
-            width: 180px;
-            margin: 10px auto;
-        }
-        .buttons {
-            margin: 20px;
-        }
-        .buttons a {
-            display: inline-block;
-            background-color: #cc0000;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            margin: 5px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-        .buttons a:hover {
-            background-color: #990000;
-        }
-        #stream {
-            margin: 30px auto;
-            width: 90%;
-            max-width: 600px;
-            height: 300px;
-        }
-        footer {
-            background-color: #eaeaea;
-            padding: 10px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radio La N - Suena Diferente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(135deg, #cc0000, #660000);
+      margin: 0;
+      padding: 0;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+    }
+    img.logo {
+      width: 180px;
+      margin: 10px auto;
+    }
+    .player-card {
+      background-color: #ffffff10;
+      border: 1px solid #ffffff30;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 400px;
+      margin: 40px auto;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    .player-card h2 {
+      margin-bottom: 20px;
+      font-weight: 300;
+    }
+    audio {
+      width: 100%;
+      outline: none;
+      border-radius: 10px;
+    }
+    .buttons {
+      margin: 30px 0;
+    }
+    .buttons a {
+      display: inline-block;
+      background-color: #ffffff20;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      margin: 5px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: 1px solid white;
+      transition: background 0.3s;
+    }
+    .buttons a:hover {
+      background-color: white;
+      color: #cc0000;
+    }
+    footer {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Radio La N - Suena Diferente</h1>
-        <img src="http://imgfz.com/i/ktMrqcy.png" alt="Logo Radio La N" class="logo">
-    </header>
 
-    <div id="stream"></div>
+  <header>
+    <h1>Radio La N - Suena Diferente</h1>
+    <img src="http://imgfz.com/i/ktMrqcy.png" alt="Logo Radio La N" class="logo">
+  </header>
 
-    <div class="buttons">
-        <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">Descarga la App</a>
-        <a href="https://www.facebook.com/share/169AqYynmu/" target="_blank">Facebook</a>
-        <a href="https://wa.me/51984412853" target="_blank">WhatsApp Oyentes</a>
-        <a href="https://wa.me/51942883375" target="_blank">Contratos Publicidad</a>
-    </div>
+  <div class="player-card">
+    <h2>🔴 Transmisión en Vivo</h2>
+    <audio controls autoplay>
+      <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+  </div>
 
-    <footer>
-        Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
-    </footer>
+  <div class="buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">Descarga la App</a>
+    <a href="https://www.facebook.com/share/169AqYynmu/" target="_blank">Facebook</a>
+    <a href="https://wa.me/51984412853" target="_blank">WhatsApp Oyentes</a>
+    <a href="https://wa.me/51942883375" target="_blank">Contratos Publicidad</a>
+  </div>
 
-    <!-- Scripts del reproductor -->
-    <script src="https://sistemahost.com/playergenerator/js/jquery-3.2.1.min.js"></script>
-    <script src="https://sistemahost.com/playergenerator/js/player.js"></script>
-    <script> 
-        $('#stream').lunaradio({
-            streamurl: 'http://sonic.globalstream.pro/8108/',
-            radioname: 'Radio La N',
-            coverimage: '',
-            onlycoverimage: false,
-            userinterface: 'big',
-            backgroundcolor: '#ffffff',
-            fontcolor: '#000000',
-            hightlightcolor: '#cc0000',
-            fontname: 'Raleway',
-            googlefont: 'Raleway:wght@300',
-            fontratio: '0.4',
-            scroll: 'true',
-            coverstyle: 'animated',
-            usevisualizer: 'real',
-            visualizertype: '1',
-            streamtype: 'shoutcast2',
-            shoutcastpath: '/stream',
-            shoutcastid: '1',
-            autoplay: 'true',
-            metadatainterval: '5000',
-            volume: '100',
-            usestreamcorsproxy: 'true'
-        }); 
-    </script>
+  <footer>
+    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+  </footer>
+
 </body>
 </html>
