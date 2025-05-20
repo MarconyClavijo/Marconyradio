@@ -115,6 +115,44 @@
         width: 80%;
       }
     }
+
+    /* Modal (Ventana emergente) */
+    #myModal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Contenido del modal */
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      margin: 100px auto;
+    }
+
+    /* Estilo de la X de cierre */
+    .close {
+      color: #111;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #e60000;
+    }
   </style>
 </head>
 <body>
@@ -140,15 +178,55 @@
     </audio>
   </div>
 
-  <!-- Botones -->
-  <div class="buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-    <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-    <a href="https://wa.me/51942883375" target="_blank">📢 Contrata Publicidad</a>
-    <a href="inscripcion-dia-del-padre.html">🎁 Inscribe a Papá</a>
+  <!-- Botón para abrir el modal -->
+  <a href="javascript:void(0);" onclick="openModal()" style="display: inline-block; background-color: #111; color: #ffd700; padding: 15px 30px; border-radius: 30px; font-weight: bold; font-size: 1.1em; text-decoration: none; transition: 0.3s;">
+    📨 Inscribe a tu papá aquí
+  </a>
 
+  <!-- Modal (Formulario) -->
+  <div id="myModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 style="text-align: center; color: #e60000;">¡Inscripción al Sorteo Día del Padre!</h2>
+      
+      <form action="https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec" method="POST">
+        <label for="papasNombre">Nombre del Papá:</label><br>
+        <input type="text" id="papasNombre" name="papasNombre" required><br><br>
+
+        <label for="tuNombre">Tu Nombre:</label><br>
+        <input type="text" id="tuNombre" name="tuNombre" required><br><br>
+
+        <label for="dni">DNI del Papá:</label><br>
+        <input type="text" id="dni" name="dni" required><br><br>
+
+        <label for="telefono">Teléfono:</label><br>
+        <input type="text" id="telefono" name="telefono"><br><br>
+
+        <label for="mensaje">Mensaje (Opcional):</label><br>
+        <textarea id="mensaje" name="mensaje"></textarea><br><br>
+
+        <input type="submit" value="Enviar Inscripción">
+      </form>
+    </div>
   </div>
+
+  <!-- JavaScript para abrir y cerrar el modal -->
+  <script>
+    function openModal() {
+      document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+
+    // Cierra el modal si el usuario hace clic fuera de él
+    window.onclick = function(event) {
+      if (event.target == document.getElementById("myModal")) {
+        closeModal();
+      }
+    }
+  </script>
 
   <!-- Footer -->
   <footer>
