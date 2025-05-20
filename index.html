@@ -1,183 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Radio Stereo M 101.5 FM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --rojo: #e60000;
-      --amarillo: #ffd700;
-      --negro: #111;
-      --blanco: #fff;
-      --gris: #444;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Stereo M 101.5 FM</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--rojo: #e60000;
+--amarillo: #ffd700;
+--negro: #111;
+--blanco: #fff;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--rojo), var(--negro));
-      color: var(--blanco);
-      text-align: center;
-    }
+body {
+margin: 0;
+font-family: 'Raleway', sans-serif;
+background: linear-gradient(to bottom, var(--rojo), var(--negro));
+color: var(--blanco);
+text-align: center;
+}
 
-    header {
-      padding: 30px 20px;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
+header {
+padding: 30px 20px;
+background-color: rgba(0, 0, 0, 0.7);
+}
 
-    header img.logo {
-      width: 200px;
-    }
+header img.logo {
+width: 200px;
+}
 
-    header h1 {
-      margin-top: 10px;
-      font-size: 2em;
-      color: var(--amarillo);
-    }
+header h1 {
+margin-top: 10px;
+font-size: 2em;
+color: var(--amarillo);
+}
 
-    .video-container {
-      margin: 30px auto 10px;
-      max-width: 700px;
-      position: relative;
-    }
+.tagline {
+margin: 30px auto;
+max-width: 800px;
+}
 
-    .video-container iframe {
+    .tagline img {
+      width: 90%;
+    /* Reemplazo de imagen por video de YouTube */
+    .tagline iframe {
       width: 100%;
+max-width: 700px;
       height: 400px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+@@ -190,7 +192,8 @@
 
-    .inscribe-btn {
-      margin-top: 20px;
-    }
+<!-- Frase destacada -->
+<div class="tagline">
+    <img src="http://imgfz.com/i/LDzOfiX.png" alt="Cuna de los grandes">
+    <!-- Reemplazamos la imagen por el video de YouTube -->
+    <iframe src="https://youtube.com/shorts/npdQaPnWHYU?si=tZqo9L6kwGB4ic1v" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<p>Radio Stereo M, la cuna de los grandes... ¡donde nacen los grandes artistas!</p>
+</div>
 
-    .inscribe-btn a {
-      background: linear-gradient(to right, #ffd700, #e60000);
-      color: #111;
-      padding: 15px 35px;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      transition: 0.3s;
-      display: inline-block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
+@@ -222,49 +225,49 @@
+<span class="close" onclick="closeModal()">&times;</span>
+<h2 style="text-align: center; color: #e60000;">¡Inscripción al Sorteo Día del Padre!</h2>
 
-    .inscribe-btn a:hover {
-      background: #fff;
-      color: #e60000;
-    }
+      <form action="https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec" method="POST">
+      <form action="https://script.google.com/macros/s/AKfycbwbGVXR7ThcIOgu1dOX0qD9-9vOYiiE4pEfuM9BChZ1cczDK6p8aEozWvjAJDUebjl1/exec" method="POST">
+<label for="papasNombre">Nombre del Papá:</label><br>
+<input type="text" id="papasNombre" name="papasNombre" required><br><br>
 
-    .player-box {
-      background: rgba(0, 0, 0, 0.5);
-      border: 2px solid var(--amarillo);
-      border-radius: 20px;
-      padding: 30px;
-      margin: 40px auto;
-      max-width: 500px;
-    }
+<label for="tuNombre">Tu Nombre:</label><br>
+<input type="text" id="tuNombre" name="tuNombre" required><br><br>
 
-    .player-box h2 {
-      margin-bottom: 15px;
-      color: var(--blanco);
-    }
+<label for="dni">DNI del Papá:</label><br>
+<input type="text" id="dni" name="dni" required><br><br>
 
-    audio {
-      width: 100%;
-      outline: none;
-      border-radius: 10px;
-    }
+<label for="telefono">Teléfono:</label><br>
+<input type="text" id="telefono" name="telefono"><br><br>
 
-    .buttons {
-      margin: 30px 0;
-    }
+<label for="mensaje">Mensaje (Opcional):</label><br>
+<textarea id="mensaje" name="mensaje"></textarea><br><br>
 
-    .buttons a {
-      display: inline-block;
-      background-color: var(--amarillo);
-      color: var(--negro);
-      padding: 12px 25px;
-      text-decoration: none;
-      margin: 10px;
-      font-weight: bold;
-      border-radius: 30px;
-      transition: 0.3s;
-    }
+<input type="submit" value="Enviar Inscripción">
+</form>
+</div>
+</div>
 
-    .buttons a:hover {
-      background-color: var(--blanco);
-      color: var(--rojo);
-    }
+<!-- JavaScript para abrir y cerrar el modal -->
+<script>
+function openModal() {
+document.getElementById("myModal").style.display = "block";
+}
 
-    footer {
-      background-color: #000;
-      padding: 15px;
-      font-size: 14px;
-      color: #aaa;
-    }
+function closeModal() {
+document.getElementById("myModal").style.display = "none";
+}
 
-    @media (max-width: 600px) {
-      .video-container iframe {
-        height: 220px;
-      }
+// Cierra el modal si el usuario hace clic fuera de él
+window.onclick = function(event) {
+if (event.target == document.getElementById("myModal")) {
+closeModal();
+}
+}
+</script>
 
-      .buttons a, .inscribe-btn a {
-        display: block;
-        width: 80%;
-        margin: 10px auto;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Encabezado -->
-  <header>
-    <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo">
-    <h1>Radio Stereo M 101.5 FM</h1>
-  </header>
-
-  <!-- Video y Botón -->
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/npdQaPnWHYU" 
-      title="Promo Día del Padre" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
-    </iframe>
-  </div>
-
-  <div class="inscribe-btn">
-    <a href="https://script.google.com/macros/s/AKfycbwbGVXR7ThcIOgu1dOX0qD9-9vOYiiE4pEfuM9BChZ1cczDK6p8aEozWvjAJDUebjl1/exec" target="_blank">
-      🧔‍♂️ Inscribe a tu Papá y Gana Premios
-    </a>
-  </div>
-
-  <!-- Reproductor -->
-  <div class="player-box">
-    <h2>🎧 Escúchanos en Vivo</h2>
-    <audio controls autoplay>
-      <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
-  </div>
-
-  <!-- Botones -->
-  <div class="buttons">
-    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-    <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-    <a href="https://wa.me/51942883375" target="_blank">📢 Contrata Publicidad</a>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
-  </footer>
+<!-- Footer -->
+<footer>
+Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+</footer>
 
 </body>
 </html>
