@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscribe a Papá - Día del Padre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rojo: #e60000;
+      --amarillo: #ffd700;
+      --negro: #111;
+      --blanco: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(to bottom, var(--rojo), var(--negro));
+      color: var(--blanco);
+      text-align: center;
+      padding: 20px;
+    }
+
+    header img.logo {
+      width: 200px;
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: var(--amarillo);
+      margin: 10px 0 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 20px;
+      border: 2px solid var(--amarillo);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      text-align: left;
+      font-weight: bold;
+      color: var(--amarillo);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+
+    button {
+      margin-top: 20px;
+      background: var(--amarillo);
+      color: var(--negro);
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--blanco);
+      color: var(--rojo);
+    }
+
+    .mensaje-exito {
+      color: lightgreen;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo">
+    <h1>¡Inscribe a Papá y Gana!</h1>
+    <p>Radio Stereo M premia a papá en su día 🎉 <br> Sorteo: 15 de junio 2025</p>
+  </header>
+
+  <form id="formulario">
+    <label for="nombrePapa">Nombre del Papá:</label>
+    <input type="text" id="nombrePapa" name="nombrePapa" required>
+
+    <label for="nombreHijo">Tu Nombre:</label>
+    <input type="text" id="nombreHijo" name="nombreHijo" required>
+
+    <label for="dni">DNI del Papá:</label>
+    <input type="text" id="dni" name="dni" required pattern="[0-9]{8}" maxlength="8">
+
+    <label for="telefono">Celular de Contacto:</label>
+    <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{9}" maxlength="9">
+
+    <label for="mensaje">Mensaje Especial para Papá:</label>
+    <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+    <button type="submit">📨 Inscribir</button>
+    <div class="mensaje-exito" id="mensajeExito"></div>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/tu_script_id/exec'; // <-- Reemplaza esto con tu enlace
+    const form = document.getElementById('formulario');
+    const mensaje = document.getElementById('mensajeExito');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          mensaje.innerHTML = "✅ ¡Papá fue inscrito con éxito!";
+          form.reset();
+        })
+        .catch(error => {
+          mensaje.innerHTML = "❌ Ocurrió un error. Intenta de nuevo.";
+        });
+    });
+  </script>
+
+</body>
+</html>
