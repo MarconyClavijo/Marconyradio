@@ -129,7 +129,6 @@
       background-color: rgba(0, 0, 0, 0.4);
     }
 
-    /* Contenido del modal */
     .modal-content {
       background-color: #fff;
       padding: 20px;
@@ -138,7 +137,6 @@
       margin: 100px auto;
     }
 
-    /* Estilo de la X de cierre */
     .close {
       color: #111;
       font-size: 30px;
@@ -152,6 +150,27 @@
     .close:hover,
     .close:focus {
       color: #e60000;
+    }
+
+    /* Estilo del formulario */
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    form input[type="submit"] {
+      background-color: var(--amarillo);
+      color: var(--negro);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    form input[type="submit"]:hover {
+      background-color: var(--blanco);
+      color: var(--rojo);
     }
   </style>
 </head>
@@ -176,6 +195,14 @@
       <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
       Tu navegador no soporta audio HTML5.
     </audio>
+  </div>
+
+  <!-- Botones de redes sociales y app -->
+  <div class="buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
+    <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+    <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
+    <a href="https://wa.me/51942883375" target="_blank">📢 Contrata Publicidad</a>
   </div>
 
   <!-- Botón para abrir el modal -->
