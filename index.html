@@ -222,7 +222,7 @@
       .then(res => res.ok ? res.text() : Promise.reject("Error al enviar"))
       .then(response => {
         mensajeEstado.style.color = "green";
-        mensajeEstado.textContent = "✅ Inscripción enviada con éxito.";
+        mensajeEstado.textContent = "✅ ¡Papá fue inscrito con éxito!";
         form.reset();
       })
       .catch(error => {
