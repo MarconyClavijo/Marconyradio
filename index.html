@@ -44,26 +44,55 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    .inscribe-btn {
-      margin-top: 20px;
+    .formulario {
+      background-color: #fff;
+      color: #000;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: left;
+      font-family: 'Raleway', sans-serif;
     }
 
-    .inscribe-btn a {
-      background: linear-gradient(to right, #ffd700, #e60000);
-      color: #111;
-      padding: 15px 35px;
-      font-size: 1.2em;
+    .formulario h2 {
+      text-align: center;
+      color: var(--rojo);
+    }
+
+    .formulario label {
       font-weight: bold;
-      text-decoration: none;
-      border-radius: 50px;
-      transition: 0.3s;
-      display: inline-block;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
-    .inscribe-btn a:hover {
-      background: #fff;
-      color: #e60000;
+    .formulario input,
+    .formulario textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .formulario input[type="submit"] {
+      background-color: var(--rojo);
+      color: white;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 30px;
+      padding: 12px;
+    }
+
+    .formulario input[type="submit"]:hover {
+      background-color: #c00000;
+    }
+
+    #mensajeExito {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+      text-align: center;
     }
 
     .player-box {
@@ -114,36 +143,6 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    .formulario {
-      background-color: #fff;
-      color: #000;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: left;
-    }
-
-    .formulario input, .formulario textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    .formulario input[type="submit"] {
-      background-color: var(--rojo);
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .formulario input[type="submit"]:hover {
-      background-color: #c00000;
-    }
-
     footer {
       background-color: #000;
       padding: 15px;
@@ -156,7 +155,7 @@
         height: 220px;
       }
 
-      .buttons a, .inscribe-btn a {
+      .buttons a {
         display: block;
         width: 80%;
         margin: 10px auto;
@@ -188,10 +187,10 @@
     <p>Radio Stereo M, la cuna de los grandes... ¡donde nacen los grandes artistas!</p>
   </div>
 
-  <!-- Formulario Día del Padre -->
+  <!-- Formulario -->
   <div class="formulario">
     <h2>🧔‍♂️ Inscripción al Sorteo Día del Padre</h2>
-    <form action="https://script.google.com/macros/s/AKfycbwbGVXR7ThcIOgu1dOX0qD9-9vOYiiE4pEfuM9BChZ1cczDK6p8aEozWvjAJDUebjl1/exec" method="POST">
+    <form id="formInscripcion">
       <label for="papasNombre">Nombre del Papá:</label>
       <input type="text" id="papasNombre" name="papasNombre" required>
 
@@ -199,15 +198,16 @@
       <input type="text" id="tuNombre" name="tuNombre" required>
 
       <label for="dni">DNI del Papá:</label>
-      <input type="text" id="dni" name="dni" required>
+      <input type="text" id="dni" name="dni" required maxlength="8" pattern="[0-9]{8}">
 
       <label for="telefono">Teléfono:</label>
-      <input type="text" id="telefono" name="telefono" required>
+      <input type="text" id="telefono" name="telefono" required maxlength="9" pattern="[0-9]{9}">
 
       <label for="mensaje">Mensaje (Opcional):</label>
       <textarea id="mensaje" name="mensaje"></textarea>
 
       <input type="submit" value="Enviar Inscripción">
+      <div id="mensajeExito"></div>
     </form>
   </div>
 
@@ -232,6 +232,24 @@
   <footer>
     Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
   </footer>
+
+  <script>
+    const form = document.getElementById('formInscripcion');
+    const mensaje = document.getElementById('mensajeExito');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwbGVXR7ThcIOgu1dOX0qD9-9vOYiiE4pEfuM9BChZ1cczDK6p8aEozWvjAJDUebjl1/exec';
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          mensaje.innerHTML = "✅ ¡Papá fue inscrito con éxito!";
+          form.reset();
+        })
+        .catch(error => {
+          mensaje.innerHTML = "❌ Ocurrió un error. Intenta de nuevo.";
+        });
+    });
+  </script>
 
 </body>
 </html>
