@@ -29,7 +29,7 @@
 <body>
   <h1>Radio Stereo M</h1>
   <audio controls autoplay>
-    <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
+    <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg">
     Tu navegador no soporta audio HTML5.
   </audio>
   <div class="song-title" id="song-title">Cargando canción...</div>
@@ -37,9 +37,12 @@
   <script>
     async function fetchSongTitle() {
       try {
-        const response = await fetch("http://sonic.globalstream.pro/8108/stats?sid=1&json=1");
+        const proxyUrl = "https://api.allorigins.win/get?url=";
+        const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1");
+        const response = await fetch(proxyUrl + targetUrl);
         const data = await response.json();
-        const title = data.songtitle || "Sin título";
+        const parsedData = JSON.parse(data.contents);
+        const title = parsedData.songtitle || "Sin título";
         document.getElementById("song-title").textContent = title;
       } catch (error) {
         document.getElementById("song-title").textContent = "Error al cargar canción";
