@@ -252,23 +252,36 @@
   <div class="song-title" id="song-title">Cargando canción...</div>
 
   <script>
-    async function fetchSongTitle() {
-      try {
-        const proxyUrl = "https://api.allorigins.win/get?url=";
-        const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1");
-        const response = await fetch(proxyUrl + targetUrl);
-        const data = await response.json();
-        const parsedData = JSON.parse(data.contents);
-        const title = parsedData.songtitle || "Sin título";
-        document.getElementById("song-title").textContent = title;
-      } catch (error) {
-        document.getElementById("song-title").textContent = "Error al cargar canción";
-      }
-    }
+  function fetchSongTitle() {
+    const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
+    const proxyUrl = "https://api.allorigins.win/get?url=" + targetUrl;
 
-    fetchSongTitle();
-    setInterval(fetchSongTitle, 10000); // actualiza cada 10 segundos
-  </script>
+    fetch(proxyUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al obtener datos del proxy.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        const responseText = data.contents;
+        const responseData = JSON.parse(responseText);
+        const songTitle = responseData.songtitle;
+
+        // Actualiza el contenido del elemento con ID "current-song"
+        document.getElementById("current-song").textContent = songTitle;
+      })
+      .catch(error => {
+        console.error("Error al obtener el título de la canción:", error);
+      });
+  }
+
+  // Llamar la función inicialmente
+  fetchSongTitle();
+
+  // Actualizar cada 5 segundos
+  setInterval(fetchSongTitle, 5000);
+</script>
       </div>
 
       <div class="formulario">
