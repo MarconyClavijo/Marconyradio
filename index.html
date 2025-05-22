@@ -9,7 +9,6 @@
     :root {
       --rojo: #e60000;
       --amarillo: #ffd700;
-      --celeste: #00cfff;
       --negro: #111;
       --blanco: #fff;
     }
@@ -17,7 +16,7 @@
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, #ffeb3b, #e60000);
+      background: linear-gradient(to bottom, var(--amarillo), var(--rojo));
       color: var(--blanco);
     }
 
@@ -26,13 +25,12 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px;
-      background-color: var(--celeste);
+      background: radial-gradient(circle at center, #ff5722, #d32f2f);
+      flex-wrap: nowrap;
     }
 
     .logo-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      text-align: center;
       margin-right: 20px;
     }
 
@@ -40,16 +38,17 @@
       width: 120px;
     }
 
-    .slogan {
-      margin-top: 10px;
-      font-size: 1em;
-      color: var(--rojo);
-      font-weight: bold;
-    }
-
     .extra-img {
       width: 150px;
       max-width: 100%;
+      transform: scaleX(-1); /* Voltear imagen horizontalmente */
+    }
+
+    .slogan {
+      margin-top: 10px;
+      font-size: 1em;
+      color: var(--amarillo);
+      font-weight: bold;
     }
 
     .main-content {
@@ -179,18 +178,19 @@
     }
 
     @media screen and (max-width: 768px) {
-      .main-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
       header {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         text-align: center;
       }
 
+      .logo-box {
+        margin-right: 10px;
+      }
+
       .extra-img {
-        margin-top: 15px;
+        margin-top: 0;
+        transform: scaleX(-1);
       }
     }
   </style>
@@ -201,7 +201,7 @@
       <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
       <div class="slogan">La Radio Papá 🎙️</div>
     </div>
-    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Imagen decorativa" class="extra-img" />
+    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Artistas" class="extra-img" />
   </header>
 
   <div class="main-content">
