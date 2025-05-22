@@ -2,37 +2,88 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radio Stereo M</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radio Stereo M - 101.5 FM</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+      color: #00ffc8;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    header {
       text-align: center;
-      padding: 50px;
+      margin-bottom: 40px;
+    }
+    header img {
+      width: 180px;
+      height: auto;
     }
     h1 {
-      color: #00ffc8;
-    }
-    .song-title {
-      margin-top: 20px;
-      font-size: 1.5em;
+      margin-top: 15px;
+      font-size: 2.5rem;
       color: #00ffcc;
+      text-shadow: 0 0 8px #00ffcc;
     }
     audio {
-      margin-top: 30px;
       width: 300px;
+      border-radius: 10px;
+      outline: none;
+      margin-top: 20px;
+      background: #222;
+      box-shadow: 0 0 15px #00ffcc;
+    }
+    .song-title {
+      margin-top: 25px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #00ffcc;
+      text-shadow: 0 0 5px #00ffcc;
+      min-height: 30px;
+    }
+    footer {
+      margin-top: auto;
+      padding: 15px;
+      font-size: 0.9rem;
+      color: #006655;
+      text-align: center;
+      border-top: 1px solid #00ffcc44;
+      width: 100%;
+      max-width: 400px;
+    }
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Radio Stereo M</h1>
+  <header>
+    <img src="https://i.imgur.com/yourlogo.png" alt="Radio Stereo M Logo" />
+    <h1>Radio Stereo M - 101.5 FM</h1>
+  </header>
+
   <audio controls autoplay>
-    <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
+    <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
+
   <div class="song-title" id="song-title">Cargando canción...</div>
+
+  <footer>
+    Síguenos en 
+    <a href="https://www.facebook.com/radiostereom" target="_blank" rel="noopener noreferrer">Facebook</a> | 
+    <a href="https://wa.me/51999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </footer>
 
   <script>
     async function fetchSongTitle() {
@@ -50,7 +101,7 @@
     }
 
     fetchSongTitle();
-    setInterval(fetchSongTitle, 10000); // actualiza cada 10 segundos
+    setInterval(fetchSongTitle, 10000);
   </script>
 </body>
 </html>
