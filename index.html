@@ -6,62 +6,69 @@
   <title>Radio Stereo M</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: #fff;
+      margin: 0;
+      padding: 0;
+      background: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    .player {
-      background: #222;
-      border-radius: 20px;
-      padding: 20px;
-      max-width: 400px;
-      margin: auto;
-      box-shadow: 0 0 10px #000;
-    }
-    .title {
-      font-size: 20px;
-      font-weight: bold;
+
+    h1 {
+      color: #00ffc8;
       margin-bottom: 10px;
     }
-    .now-playing {
-      margin: 15px 0;
-      font-size: 16px;
-      color: #ffd700;
-    }
+
     audio {
-      width: 100%;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    #song-title {
+      font-size: 1.2rem;
+      color: #ffde59;
       margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="player">
-    <div class="title">Radio Stereo M 101.5 FM</div>
-    <div class="now-playing" id="nowPlaying">Cargando canción...</div>
-    <audio controls autoplay>
-      <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-      Tu navegador no soporta el audio HTML5.
-    </audio>
-  </div>
+
+  <h1>Radio Stereo M 101.5 FM</h1>
+
+  <audio controls autoplay>
+    <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg">
+    Tu navegador no soporta el audio.
+  </audio>
+
+  <div id="song-title">Cargando canción...</div>
 
   <script>
-    function fetchMetadata() {
-      fetch('http://sonic.globalstream.pro:8108/stats?sid=1&json=1')
-        .then(response => response.json())
-        .then(data => {
-          const nowPlaying = document.getElementById('nowPlaying');
-          const title = data?.source?.title || 'Sin información';
-          nowPlaying.textContent = `Ahora suena: ${title}`;
-        })
-        .catch(error => {
-          console.error('Error al obtener metadata:', error);
-        });
+    async function fetchMetadata() {
+      try {
+        const response = await fetch('metadata.php');
+        const data = await response.json();
+
+        if (data && data.songtitle) {
+          document.getElementById('song-title').textContent = data.songtitle;
+          document.title = data.songtitle + ' | Radio Stereo M';
+        } else {
+          document.getElementById('song-title').textContent = 'Sin información de la canción';
+        }
+      } catch (error) {
+        document.getElementById('song-title').textContent = 'Error al obtener la canción';
+        console.error('Error al obtener metadatos:', error);
+      }
     }
 
-    fetchMetadata(); // Al cargar
-    setInterval(fetchMetadata, 10000); // Cada 10 segundos
+    fetchMetadata();
+    setInterval(fetchMetadata, 15000); // Actualiza cada 15 segundos
   </script>
+
 </body>
 </html>
