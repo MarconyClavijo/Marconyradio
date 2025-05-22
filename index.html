@@ -16,13 +16,13 @@
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--amarillo), var(--rojo));
+      background: linear-gradient(to bottom, var(--rojo), var(--negro));
       color: var(--blanco);
     }
 
     header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       padding: 20px;
       background-color: #ffcc00;
@@ -31,6 +31,7 @@
 
     .logo-box {
       text-align: center;
+      margin-right: 20px;
     }
 
     header img.logo {
@@ -40,14 +41,14 @@
     .slogan {
       margin-top: 10px;
       font-size: 1em;
-      color: var(--negro);
+      color: #e60000;
       font-weight: bold;
     }
 
     .extra-img {
-      width: 300px;
+      width: 250px;
       max-width: 100%;
-      transform: scaleX(-1);
+      margin-top: 0;
     }
 
     .main-content {
@@ -58,8 +59,8 @@
     }
 
     .left-content {
-      max-width: 500px;
-      margin: 10px auto;
+      max-width: 450px;
+      margin: 10px;
     }
 
     .player-box {
@@ -85,14 +86,12 @@
     .formulario {
       background-color: #fff;
       color: #000;
-      margin: 20px auto;
+      margin-top: 20px;
       padding: 20px;
       border-radius: 15px;
       border: 3px solid #ffd700;
       box-shadow: 0 0 15px #ffd700;
-      max-width: 100%;
-      width: 100%;
-      box-sizing: border-box;
+      text-align: center;
     }
 
     .formulario h2 {
@@ -111,6 +110,7 @@
       font-weight: bold;
       display: block;
       margin: 10px 0 5px;
+      text-align: left;
     }
 
     .formulario input,
@@ -121,7 +121,6 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1em;
-      box-sizing: border-box;
     }
 
     .formulario input[type="submit"] {
@@ -182,17 +181,22 @@
 
     @media screen and (max-width: 768px) {
       header {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .logo-box, .extra-img {
-        flex: 1 1 50%;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
       }
 
       .extra-img {
         margin-top: 10px;
+      }
+
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .formulario label {
+        text-align: center;
       }
     }
   </style>
@@ -203,7 +207,7 @@
       <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
       <div class="slogan">La Radio Papá 🎙️</div>
     </div>
-    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Artistas" class="extra-img" />
+    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Artistas" class="extra-img">
   </header>
 
   <div class="main-content">
