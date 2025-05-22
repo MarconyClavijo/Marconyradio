@@ -4,298 +4,106 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radio Stereo M 101.5 FM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    :root {
-      --rojo: #e60000;
-      --amarillo: #ffd700;
-      --negro: #111;
-      --blanco: #fff;
-      --celeste: #0088cc;
-    }
     body {
       margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--celeste), var(--rojo));
-      color: var(--blanco);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: var(--amarillo);
-      color: var(--negro);
-    }
-
-    .logo-box {
-      text-align: center;
-      margin-right: 20px;
-    }
-
-    header img.logo {
-      width: 120px;
-      display: block;
-    }
-
-    .slogan {
-      margin-top: 8px;
-      font-size: 1em;
-      color: var(--rojo);
-      font-weight: bold;
-    }
-
-    .extra-img {
-      width: 300px;
-      max-width: 100%;
-      margin-top: 0;
-      background: linear-gradient(135deg, #ff6600, #e60000);
-      padding: 8px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #e60000a0;
-    }
-
-    .main-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .left-content {
-      max-width: 450px;
-      margin: 10px;
-      flex: 1 1 450px;
-    }
-
-    .player-box {
-      background: #fff;
-      color: var(--negro);
-      border: 3px solid var(--amarillo);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px #ffd700;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #000000, #1e1e1e);
+      color: #fff;
       text-align: center;
     }
-
-    .player-box h2 {
-      color: var(--rojo);
-      margin-bottom: 10px;
+    .container {
+      padding: 30px 20px;
+      max-width: 600px;
+      margin: auto;
     }
-
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
     audio {
-      width: 100%;
-      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
     }
-
     #metadata {
-      margin-top: 10px;
-      font-weight: bold;
-      color: var(--rojo);
-    }
-
-    .formulario {
-      background-color: #fff;
-      color: #000;
       margin-top: 20px;
-      padding: 20px;
-      border-radius: 15px;
-      border: 3px solid #ffd700;
-      box-shadow: 0 0 15px #ffd700;
+      font-size: 1.2em;
+      color: #00ffcc;
     }
-
-    .formulario h2 {
-      color: #e60000;
-      text-align: center;
-      margin-bottom: 15px;
+    .buttons {
+      margin-top: 30px;
     }
-
-    .centrado {
-      text-align: center;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
-
-    .formulario label {
-      font-weight: bold;
-      display: block;
-      margin: 10px 0 5px;
-    }
-
-    .formulario input,
-    .formulario textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      box-sizing: border-box;
-      display: block;
-    }
-
-    .formulario input[type="submit"] {
-      background-color: #e60000;
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.1em;
-      border-radius: 30px;
-      transition: 0.3s;
-      width: auto;
-      padding: 12px 30px;
-      margin: 0 auto;
-      display: block;
-    }
-
-    .formulario input[type="submit"]:hover {
-      background-color: #b30000;
-    }
-
-    .mensaje {
-      margin-top: 15px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .right-buttons {
-      margin: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 200px;
-      flex-shrink: 0;
-    }
-
-    .right-buttons a {
-      display: block;
-      background: linear-gradient(to right, var(--amarillo), var(--rojo));
-      color: var(--negro);
-      text-align: center;
-      padding: 12px 15px;
+    .btn {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 12px 24px;
+      border-radius: 25px;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 30px;
-      box-shadow: 0 0 10px #000;
-      transition: 0.3s;
+      color: white;
+      transition: background 0.3s;
     }
-
-    .right-buttons a:hover {
-      background: var(--blanco);
-      color: var(--rojo);
+    .btn.whatsapp {
+      background-color: #25D366;
     }
-
+    .btn.whatsapp:hover {
+      background-color: #1da851;
+    }
+    .btn.facebook {
+      background-color: #3b5998;
+    }
+    .btn.facebook:hover {
+      background-color: #2d4373;
+    }
     footer {
-      background-color: #000;
-      padding: 15px;
-      font-size: 14px;
-      color: #aaa;
-      text-align: center;
       margin-top: 40px;
-    }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .logo-box {
-        margin-right: 10px;
-      }
-
-      .extra-img {
-        width: 200px;
-      }
-
-      .main-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .left-content {
-        max-width: 100%;
-        flex: none;
-      }
-
-      .right-buttons {
-        max-width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .right-buttons a {
-        flex: 1 1 45%;
-      }
+      font-size: 0.9em;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-box">
-      <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
-      <div class="slogan">La Radio Papá 🎙️</div>
-    </div>
-    <img src="http://imgfz.com/i/Y7pyVg3.jpeg" alt="Artistas Stereo M" class="extra-img" />
-  </header>
+  <div class="container">
+    <img src="logo.png" alt="Radio Stereo M" class="logo" />
 
-  <div class="main-content">
-    <div class="left-content">
-      <div class="player-box">
-        <h2>🎧 Escúchanos en Vivo</h2>
-        <audio controls autoplay>
-          <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg" />
-          Tu navegador no soporta audio HTML5.
-        </audio>
-        <div id="metadata">Cargando info de la canción...</div>
-      </div>
+    <h1>Radio Stereo M 101.5 FM</h1>
 
-      <div class="formulario">
-        <h2>🎁 ¡Inscribe a Papá y Gana!</h2>
-        <p class="centrado">Radio Stereo M premia a papá en su día 🎉 <br> Sorteo: 15 de junio 2025</p>
-        <form id="formulario">
-          <input type="hidden" name="Fecha" id="fecha" />
+    <audio controls autoplay>
+      <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg">
+      Tu navegador no soporta el audio en vivo.
+    </audio>
 
-          <label for="papasNombre">Nombre del Papá:</label>
-          <input type="text" id="papasNombre" name="Nombre del Papá" required />
+    <div id="metadata">Cargando info de la canción...</div>
 
-          <label for="tuNombre">Tu Nombre:</label>
-          <input type="text" id="tuNombre" name="Tu Nombre" required />
-
-          <label for="dni">DNI del Papá:</label>
-          <input type="text" id="dni" name="DNI" required />
-
-          <label for="telefono">Celular de Contacto:</label>
-          <input type="text" id="telefono" name="Teléfono" required />
-
-          <label for="mensaje">Mensaje Especial para Papá:</label>
-          <textarea id="mensaje" name="Mensaje"></textarea>
-
-          <input type="submit" value="📨 Inscribir" />
-        </form>
-        <div class="mensaje" id="mensajeEstado"></div>
-      </div>
+    <div class="buttons">
+      <a href="https://wa.me/51999999999" target="_blank" class="btn whatsapp">WhatsApp</a>
+      <a href="https://www.facebook.com/radiostereom" target="_blank" class="btn facebook">Facebook</a>
     </div>
 
-    <div class="right-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
-    </div>
+    <footer>
+      <p>www.radiostereom.com</p>
+    </footer>
   </div>
 
-  <footer>
-    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
-  </footer>
-
   <script>
-    // Actualiza el nombre de la canción cada 15 segundos
-    const metadataDiv = document.getElementById('metadata');
-
-    async function actualizarMetadata() {
+    async function actualizarCancion() {
       try {
-        const response = await fetch('http://
+        const response = await fetch("http://sonic.globalstream.pro:8108/stats?sid=1&json=1");
+        const data = await response.json();
+        const titulo = data.songtitle || "Sin información disponible";
+        document.getElementById("metadata").innerText = "Ahora suena: " + titulo;
+      } catch (error) {
+        document.getElementById("metadata").innerText = "No se pudo obtener la canción actual.";
+      }
+    }
+
+    actualizarCancion();
+    setInterval(actualizarCancion, 15000);
+  </script>
+</body>
+</html>
