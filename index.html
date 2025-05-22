@@ -20,32 +20,6 @@
       background: linear-gradient(to bottom, var(--celeste), #f44336);
       color: var(--blanco);
     }
-    .banner-container {
-      overflow: hidden;
-      background-color: var(--negro);
-    }
-    @keyframes bannerEntrada {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  60% {
-    transform: translateY(30%);
-    opacity: 1;
-  }
-  80% {
-    transform: translateY(-10%);
-  }
-  100% {
-    transform: translateY(0%);
-  }
-}
-.banner-container img {
-  width: 100%;
-  max-width: 100%;
-  display: block;
-  animation: bannerEntrada 6s ease-out forwards;
-    }
     header {
       display: flex;
       align-items: center;
@@ -128,7 +102,7 @@
       margin-top: 10px;
       font-weight: bold;
       font-style: italic;
-      color: var(--rojo);
+      color: var(--negro);
     }
     .formulario {
       background-color: #fff;
@@ -262,11 +236,6 @@
 </head>
 <body>
 
-  <!-- Banner superior animado -->
-  <div class="banner-container">
-    <img src="http://imgfz.com/i/I9lHdWp.jpeg" alt="Banner Stereo M" />
-  </div>
-
   <header>
     <div class="logo-box">
       <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
@@ -320,10 +289,8 @@
   </footer>
 
   <script>
-    // Actualiza campo fecha con fecha actual al cargar
     document.getElementById('fecha').value = new Date().toISOString().slice(0, 10);
 
-    // Enviar formulario por fetch a Google Forms o endpoint deseado
     const form = document.getElementById('formulario');
     const mensajeEstado = document.getElementById('mensajeEstado');
 
@@ -331,11 +298,6 @@
       e.preventDefault();
       mensajeEstado.textContent = 'Enviando...';
 
-      // Aquí deberías colocar tu endpoint o Google Forms URL para enviar datos
-      // Ejemplo genérico:
-      // const url = 'TU_ENDPOINT_AQUI';
-
-      // Para demo, solo simulo envío y reset
       setTimeout(() => {
         mensajeEstado.textContent = '¡Formulario enviado con éxito! Gracias por participar.';
         form.reset();
@@ -343,7 +305,6 @@
       }, 1500);
     });
 
-    // Obtener título canción en vivo con proxy para evitar CORS
     async function fetchSongTitle() {
       try {
         const proxyUrl = "https://api.allorigins.win/get?url=";
