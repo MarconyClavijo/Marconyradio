@@ -255,7 +255,7 @@
     async function fetchSongTitle() {
       try {
         const proxyUrl = "https://api.allorigins.win/get?url=";
-        const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1");
+        const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
         const response = await fetch(proxyUrl + targetUrl);
         const data = await response.json();
         const parsedData = JSON.parse(data.contents);
