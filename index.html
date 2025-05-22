@@ -1,74 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Radio Stereo M</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #121212;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      padding: 50px;
     }
-
     h1 {
       color: #00ffc8;
-      margin-bottom: 10px;
     }
-
+    .song-title {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: #00ffcc;
+    }
     audio {
-      margin: 20px auto;
-      width: 90%;
-      max-width: 400px;
-    }
-
-    #song-title {
-      font-size: 1.2rem;
-      color: #ffde59;
-      margin-top: 10px;
+      margin-top: 30px;
+      width: 300px;
     }
   </style>
 </head>
 <body>
-
-  <h1>Radio Stereo M 101.5 FM</h1>
-
+  <h1>Radio Stereo M</h1>
   <audio controls autoplay>
-    <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-    Tu navegador no soporta el audio.
+    <source src="http://sonic.globalstream.pro:8108/stream" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
   </audio>
-
-  <div id="song-title">Cargando canción...</div>
+  <div class="song-title" id="song-title">Cargando canción...</div>
 
   <script>
-    async function fetchMetadata() {
+    async function fetchSongTitle() {
       try {
-        const response = await fetch('metadata.php');
+        const response = await fetch("http://sonic.globalstream.pro:8108/stats?sid=1&json=1");
         const data = await response.json();
-
-        if (data && data.songtitle) {
-          document.getElementById('song-title').textContent = data.songtitle;
-          document.title = data.songtitle + ' | Radio Stereo M';
-        } else {
-          document.getElementById('song-title').textContent = 'Sin información de la canción';
-        }
+        const title = data.songtitle || "Sin título";
+        document.getElementById("song-title").textContent = title;
       } catch (error) {
-        document.getElementById('song-title').textContent = 'Error al obtener la canción';
-        console.error('Error al obtener metadatos:', error);
+        document.getElementById("song-title").textContent = "Error al cargar canción";
       }
     }
 
-    fetchMetadata();
-    setInterval(fetchMetadata, 15000); // Actualiza cada 15 segundos
+    fetchSongTitle();
+    setInterval(fetchSongTitle, 10000); // actualiza cada 10 segundos
   </script>
-
 </body>
 </html>
