@@ -11,22 +11,22 @@
       --amarillo: #ffd700;
       --negro: #111;
       --blanco: #fff;
+      --celeste: #0088cc;
     }
 
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--rojo), var(--negro));
+      background: linear-gradient(to bottom, var(--celeste), var(--rojo));
       color: var(--blanco);
     }
 
     header {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 20px;
-      background-color: #ffcc00;
-      flex-wrap: wrap;
+      align-items: center;
+      padding: 15px 20px 15px 20px;
+      background-color: var(--amarillo);
+      color: var(--negro);
     }
 
     .logo-box {
@@ -36,19 +36,28 @@
 
     header img.logo {
       width: 120px;
+      display: block;
     }
 
     .slogan {
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 1em;
-      color: #e60000;
+      color: var(--rojo);
       font-weight: bold;
     }
 
     .extra-img {
-      width: 250px;
+      width: 300px;
       max-width: 100%;
       margin-top: 0;
+      background: linear-gradient(135deg, #ff6600, #e60000);
+      padding: 8px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #e60000a0;
+    }
+
+    .header-title {
+      /* Se removió el texto "Radio Stereo M 101.5 FM" como pediste */
     }
 
     .main-content {
@@ -61,6 +70,7 @@
     .left-content {
       max-width: 450px;
       margin: 10px;
+      flex: 1 1 450px;
     }
 
     .player-box {
@@ -91,7 +101,6 @@
       border-radius: 15px;
       border: 3px solid #ffd700;
       box-shadow: 0 0 15px #ffd700;
-      text-align: center;
     }
 
     .formulario h2 {
@@ -110,7 +119,6 @@
       font-weight: bold;
       display: block;
       margin: 10px 0 5px;
-      text-align: left;
     }
 
     .formulario input,
@@ -121,6 +129,8 @@
       border-radius: 8px;
       border: 1px solid #ccc;
       font-size: 1em;
+      box-sizing: border-box;
+      display: block;
     }
 
     .formulario input[type="submit"] {
@@ -132,6 +142,10 @@
       font-size: 1.1em;
       border-radius: 30px;
       transition: 0.3s;
+      width: auto;
+      padding: 12px 30px;
+      margin: 0 auto;
+      display: block;
     }
 
     .formulario input[type="submit"]:hover {
@@ -150,6 +164,7 @@
       flex-direction: column;
       gap: 15px;
       max-width: 200px;
+      flex-shrink: 0;
     }
 
     .right-buttons a {
@@ -181,13 +196,16 @@
 
     @media screen and (max-width: 768px) {
       header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .logo-box {
+        margin-right: 10px;
       }
 
       .extra-img {
-        margin-top: 10px;
+        width: 200px;
       }
 
       .main-content {
@@ -195,8 +213,21 @@
         align-items: center;
       }
 
-      .formulario label {
-        text-align: center;
+      .left-content {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .right-buttons {
+        max-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .right-buttons a {
+        flex: 1 1 45%;
       }
     }
   </style>
@@ -207,7 +238,7 @@
       <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
       <div class="slogan">La Radio Papá 🎙️</div>
     </div>
-    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Artistas" class="extra-img">
+    <img src="http://imgfz.com/i/HRt3zvp.png" alt="Artistas Stereo M" class="extra-img" />
   </header>
 
   <div class="main-content">
