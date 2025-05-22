@@ -12,13 +12,15 @@
       --negro: #111;
       --blanco: #fff;
       --celeste: #0088cc;
+      --celeste-claro: #d0f0ff;
+      --gris-footer: #1e1e1e;
     }
 
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--celeste), #ffffff); /* Cambiado */
-      color: var(--blanco);
+      background: var(--celeste-claro);
+      color: var(--negro);
     }
 
     header {
@@ -49,6 +51,7 @@
     .extra-img {
       width: 300px;
       max-width: 100%;
+      margin-top: 0;
       background: linear-gradient(135deg, #ff6600, #e60000);
       padding: 8px;
       border-radius: 15px;
@@ -125,6 +128,7 @@
       border: 1px solid #ccc;
       font-size: 1em;
       box-sizing: border-box;
+      display: block;
     }
 
     .formulario input[type="submit"] {
@@ -180,10 +184,10 @@
     }
 
     footer {
-      background-color: #333; /* Cambiado */
+      background-color: var(--gris-footer);
       padding: 15px;
       font-size: 14px;
-      color: #eee; /* Más contraste */
+      color: #ddd;
       text-align: center;
       margin-top: 40px;
     }
@@ -244,7 +248,6 @@
           Tu navegador no soporta audio HTML5.
         </audio>
         <div class="song-title" id="song-title">Cargando canción...</div>
-
         <script>
           async function fetchSongTitle() {
             try {
@@ -270,22 +273,16 @@
         <p class="centrado">Radio Stereo M premia a papá en su día 🎉 <br> Sorteo: 15 de junio 2025</p>
         <form id="formulario">
           <input type="hidden" name="Fecha" id="fecha" />
-
           <label for="papasNombre">Nombre del Papá:</label>
           <input type="text" id="papasNombre" name="Nombre del Papá" required>
-
           <label for="tuNombre">Tu Nombre:</label>
           <input type="text" id="tuNombre" name="Tu Nombre" required>
-
           <label for="dni">DNI del Papá:</label>
           <input type="text" id="dni" name="DNI" required>
-
           <label for="telefono">Celular de Contacto:</label>
           <input type="text" id="telefono" name="Teléfono" required>
-
           <label for="mensaje">Mensaje Especial para Papá:</label>
           <textarea id="mensaje" name="Mensaje"></textarea>
-
           <input type="submit" value="📨 Inscribir">
         </form>
         <div class="mensaje" id="mensajeEstado"></div>
