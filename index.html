@@ -17,14 +17,14 @@
     body {
       margin: 0;
       font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--celeste), var(--rojo));
+      background: linear-gradient(to bottom, var(--celeste), #ffffff); /* Cambiado */
       color: var(--blanco);
     }
 
     header {
       display: flex;
       align-items: center;
-      padding: 15px 20px 15px 20px;
+      padding: 15px 20px;
       background-color: var(--amarillo);
       color: var(--negro);
     }
@@ -49,15 +49,10 @@
     .extra-img {
       width: 300px;
       max-width: 100%;
-      margin-top: 0; /* Sin margen arriba para quedar al ras */
       background: linear-gradient(135deg, #ff6600, #e60000);
       padding: 8px;
       border-radius: 15px;
       box-shadow: 0 0 15px #e60000a0;
-    }
-
-    .header-title {
-      /* Se removió el texto "Radio Stereo M 101.5 FM" como pediste */
     }
 
     .main-content {
@@ -130,7 +125,6 @@
       border: 1px solid #ccc;
       font-size: 1em;
       box-sizing: border-box;
-      display: block;
     }
 
     .formulario input[type="submit"] {
@@ -186,10 +180,10 @@
     }
 
     footer {
-      background-color: #000;
+      background-color: #333; /* Cambiado */
       padding: 15px;
       font-size: 14px;
-      color: #aaa;
+      color: #eee; /* Más contraste */
       text-align: center;
       margin-top: 40px;
     }
@@ -247,28 +241,28 @@
         <h2>🎧 Escúchanos en Vivo</h2>
         <audio controls autoplay>
           <source src="http://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-    Tu navegador no soporta audio HTML5.
-  </audio>
-  <div class="song-title" id="song-title">Cargando canción...</div>
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <div class="song-title" id="song-title">Cargando canción...</div>
 
-  <script>
-    async function fetchSongTitle() {
-      try {
-        const proxyUrl = "https://api.allorigins.win/get?url=";
-        const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
-        const response = await fetch(proxyUrl + targetUrl);
-        const data = await response.json();
-        const parsedData = JSON.parse(data.contents);
-        const title = parsedData.songtitle || "Sin título";
-        document.getElementById("song-title").textContent = title;
-      } catch (error) {
-        document.getElementById("song-title").textContent = "Error al cargar canción";
-      }
-    }
+        <script>
+          async function fetchSongTitle() {
+            try {
+              const proxyUrl = "https://api.allorigins.win/get?url=";
+              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
+              const response = await fetch(proxyUrl + targetUrl);
+              const data = await response.json();
+              const parsedData = JSON.parse(data.contents);
+              const title = parsedData.songtitle || "Sin título";
+              document.getElementById("song-title").textContent = title;
+            } catch (error) {
+              document.getElementById("song-title").textContent = "Error al cargar canción";
+            }
+          }
 
-    fetchSongTitle();
-    setInterval(fetchSongTitle, 5000); // actualiza cada 5 segundos
-  </script>
+          fetchSongTitle();
+          setInterval(fetchSongTitle, 5000);
+        </script>
       </div>
 
       <div class="formulario">
