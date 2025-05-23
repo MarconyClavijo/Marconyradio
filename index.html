@@ -22,6 +22,24 @@
       color: var(--blanco);
     }
 
+    /* BANNER HORIZONTAL ARRIBA */
+    .banner-horizontal {
+      width: 100%;
+      max-height: 120px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #000; /* fondo para que resalte */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px #ff0000aa;
+    }
+    .banner-horizontal img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: cover;
+    }
+
     header {
       display: flex;
       align-items: center;
@@ -39,9 +57,13 @@
       width: 120px;
       display: block;
       opacity: 0;
-      animation:
-        entrarLogo 1.6s ease-out forwards 0.3s,
-        reboteContinuo 2s ease-in-out infinite 2s;
+      animation: entrarLogo 1.6s ease-out forwards;
+      animation-delay: 0.3s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite; /* para que siga rebotando */
+      animation-name: rebote;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
     }
 
     .slogan {
@@ -53,6 +75,21 @@
       animation: entrarSlogan 1.2s ease-out forwards;
       animation-delay: 1.7s;
       animation-fill-mode: forwards;
+    }
+
+    /* BANNER VERTICAL EN LA COLUMNA DERECHA */
+    .banner-vertical {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px #e60000aa;
+    }
+    .banner-vertical img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
     }
 
     .extra-img {
@@ -273,20 +310,24 @@
       }
     }
 
-    @keyframes reboteContinuo {
-      0% {
-        transform: translateY(0) rotate(0deg);
+    /* Rebote animación logo */
+    @keyframes rebote {
+      0%, 100% {
+        transform: translateY(0);
       }
       50% {
-        transform: translateY(-10px) rotate(5deg);
-      }
-      100% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(-20px);
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- Banner Horizontal arriba -->
+  <div class="banner-horizontal">
+    <img src="http://imgfz.com/i/t8TqWNm.jpeg" alt="Banner Horizontal Promocional" />
+  </div>
+
   <header>
     <div class="logo-box">
       <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
@@ -345,6 +386,11 @@
     </div>
 
     <div class="right-buttons">
+      <!-- Banner vertical arriba -->
+      <div class="banner-vertical">
+        <img src="http://imgfz.com/i/wp1kfgX.png" alt="Banner Vertical Promocional" />
+      </div>
+
       <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
       <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
       <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
@@ -381,5 +427,6 @@
       });
     });
   </script>
+
 </body>
 </html>
