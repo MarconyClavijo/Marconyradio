@@ -39,9 +39,9 @@
       width: 120px;
       display: block;
       opacity: 0;
-      animation: entrarLogo 1.6s ease-out forwards;
-      animation-delay: 0.3s;
-      animation-fill-mode: forwards;
+      animation:
+        entrarLogo 1.6s ease-out forwards 0.3s,
+        reboteContinuo 2s ease-in-out infinite 2s;
     }
 
     .slogan {
@@ -270,6 +270,15 @@
       100% {
         opacity: 1;
         transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes reboteContinuo {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
       }
     }
   </style>
