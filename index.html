@@ -1,163 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Marcony Radio - Solo Éxitos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radio Stereo M 101.5 FM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: url('http://imgfz.com/i/GMbdw9v.jpeg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      text-align: center;
+    :root {
+      --rojo: #e60000;
+      --amarillo: #ffd700;
+      --negro: #111;
+      --blanco: #fff;
+      --celeste: #0088cc;
+      --fondo-footer: #222;
     }
 
-    /* Fondo oscuro translúcido para legibilidad */
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.75);
-      min-height: 100vh;
-      padding-bottom: 2rem;
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(to bottom, var(--celeste), #f44336);
+      color: var(--blanco);
     }
 
     header {
-      padding: 2rem 1rem 1rem;
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: var(--amarillo);
+      color: var(--negro);
     }
 
-    .vinyl-logo {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 1rem;
-      border-radius: 50%;
-      overflow: hidden;
-      animation: spin 12s linear infinite;
-      box-shadow: 0 0 20px #ff00cc, 0 0 10px #00ffff;
-      background: radial-gradient(#111 40%, #000);
-      border: 6px solid #fff;
+    .logo-box {
+      text-align: center;
+      margin-right: 20px;
     }
 
-    .vinyl-logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+    header img.logo {
+      width: 120px;
+      display: block;
+      animation: rebote 2s infinite ease-in-out;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .slogan {
+      margin-top: 8px;
+      font-size: 1em;
+      color: var(--rojo);
+      font-weight: bold;
+      opacity: 0;
+      animation: entrarSlogan 1.2s ease-out forwards;
+      animation-delay: 1.7s;
     }
 
-    h1 {
-      font-size: 2.8rem;
-      margin: 0;
-      color: #00ffff;
-      text-shadow: 2px 2px 8px #ff00cc;
-    }
-
-    p.slogan {
-      font-size: 1.3rem;
-      color: #ffcc00;
-      text-shadow: 1px 1px 5px #000;
-      margin-top: 0.5rem;
-    }
-
-    .player-container {
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
+    .extra-img {
+      width: 300px;
+      max-width: 100%;
+      background: linear-gradient(135deg, #ff6600, #e60000);
+      padding: 8px;
       border-radius: 15px;
-      width: 90%;
-      max-width: 500px;
+      box-shadow: 0 0 15px #e60000a0;
     }
 
-    .player-container h2 {
-      font-size: 1.5rem;
-      color: #ff00cc;
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .left-content {
+      max-width: 450px;
+      margin: 10px;
+      flex: 1 1 450px;
+    }
+
+    .player-box {
+      background: #fff;
+      color: var(--negro);
+      border: 3px solid var(--amarillo);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px #ffd700;
+      text-align: center;
+    }
+
+    .player-box h2 {
+      color: var(--rojo);
+      margin-bottom: 10px;
     }
 
     audio {
       width: 100%;
-      border: 3px solid #00ffff;
       border-radius: 10px;
     }
 
-    .buttons {
-      margin-top: 2rem;
+    .right-buttons {
+      margin: 10px;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 200px;
+      flex-shrink: 0;
+      background: linear-gradient(to bottom right, #ffe066, #ff7b7b);
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #e60000a0;
     }
 
-    .buttons a {
+    .right-buttons a {
+      display: block;
+      background: #fff;
+      color: var(--rojo);
+      text-align: center;
+      padding: 12px 15px;
       text-decoration: none;
       font-weight: bold;
-      padding: 1rem 2rem;
       border-radius: 30px;
-      background: linear-gradient(45deg, #ff00cc, #00ffff);
-      color: #000;
-      box-shadow: 0 0 10px #00ffff;
-      transition: 0.3s ease;
+      box-shadow: 0 0 10px #000;
+      transition: 0.3s;
     }
 
-    .buttons a:hover {
-      background: #fff;
-      color: #000;
-      box-shadow: 0 0 20px #ffcc00;
+    .right-buttons a:hover {
+      background: var(--amarillo);
+      color: var(--negro);
     }
 
     footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #ccc;
+      background-color: var(--fondo-footer);
+      padding: 15px;
+      font-size: 14px;
+      color: #ddd;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
       }
-      .vinyl-logo {
-        width: 140px;
-        height: 140px;
+
+      .logo-box {
+        margin-right: 10px;
       }
-      .buttons a {
-        font-size: 0.9rem;
-        padding: 0.8rem 1.2rem;
+
+      .extra-img {
+        width: 200px;
       }
+
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-content {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .right-buttons {
+        max-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .right-buttons a {
+        flex: 1 1 45%;
+      }
+    }
+
+    @keyframes entrarSlogan {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes rebote {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(0.7); opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <header>
-      <div class="vinyl-logo">
-        <img src="http://imgfz.com/i/MY4GItS.png" alt="Marcony Radio Logo">
+  <header>
+    <div class="logo-box">
+      <a href="https://radiostereom.com/" target="_blank">
+        <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
+      </a>
+      <div class="slogan">La Radio Papá 🎙️</div>
+    </div>
+    <img src="http://imgfz.com/i/xgID1Gn.jpeg" alt="Artistas Stereo M" class="extra-img" />
+  </header>
+
+  <div class="main-content">
+    <div class="left-content">
+      <div class="player-box">
+        <h2>🎧 Escúchanos en Vivo</h2>
+        <audio controls autoplay>
+          <source src="https://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <div class="song-title" id="song-title">Cargando canción...</div>
+        <script>
+          async function fetchSongTitle() {
+            try {
+              const proxyUrl = "https://api.allorigins.win/get?url=";
+              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
+              const response = await fetch(proxyUrl + targetUrl);
+              const data = await response.json();
+              const parsedData = JSON.parse(data.contents);
+              const title = parsedData.songtitle || "Sin título";
+              document.getElementById("song-title").textContent = title;
+            } catch (error) {
+              document.getElementById("song-title").textContent = "Error al cargar canción";
+            }
+          }
+          fetchSongTitle();
+          setInterval(fetchSongTitle, 5000);
+        </script>
       </div>
-      <h1>Marcony Radio</h1>
-      <p class="slogan">Solo Éxitos</p>
-    </header>
-
-    <div class="player-container">
-      <h2>🎧 Escúchanos en Vivo</h2>
-     <audio controls autoplay>
-  <source src="http://uk25freenew.listen2myradio.com:9112/stream" type="audio/mpeg">
-  Tu navegador no soporta audio HTML5.
-     </audio>
     </div>
 
-    <div class="buttons">
-      <a href="https://www.facebook.com/radiomarcony" target="_blank">📘 Facebook</a>
-      <a href="https://wa.me/51942883375" target="_blank">📱 WhatsApp</a>
-      <a href="#publicidad">📢 Publicidad</a>
+    <div class="right-buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
+      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
+      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
     </div>
-
-    <footer>
-      © 2025 Marcony Radio - Todos los derechos reservados
-    </footer>
   </div>
+
+  <footer>
+    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+  </footer>
 </body>
 </html>
