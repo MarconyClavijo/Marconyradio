@@ -1,129 +1,253 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radio La N 96.3 FM | Suena Diferente</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Radio Stereo M 101.5 FM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rojo: #e60000;
+      --amarillo: #ffd700;
+      --negro: #111;
+      --blanco: #fff;
+      --celeste: #0088cc;
+      --fondo-footer: #222;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    body {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(to bottom, var(--celeste), #f44336);
+      color: var(--blanco);
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:'Poppins', sans-serif;
-  background:linear-gradient(135deg,#000,#111,#ffcc00);
-  color:#fff;
-  text-align:center;
-}
+    header {
+      display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      background-color: var(--amarillo);
+      color: var(--negro);
+    }
 
-header{
-  padding:40px 15px 20px;
-}
+    .logo-box {
+      text-align: center;
+      margin-right: 20px;
+    }
 
-/* LOGO */
-.logo{
-  width:190px;
-  margin-bottom:12px;
-  filter:
-    drop-shadow(0 0 4px #fff)
-    drop-shadow(0 0 12px #ffcc00)
-    drop-shadow(0 0 24px rgba(255,204,0,.9));
-  animation:floatLogo 3.5s ease-in-out infinite;
-}
+    header img.logo {
+      width: 120px;
+      display: block;
+      animation: rebote 2s infinite ease-in-out;
+    }
 
-@keyframes floatLogo{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-  100%{transform:translateY(0)}
-}
+    .slogan {
+      margin-top: 8px;
+      font-size: 1em;
+      color: var(--rojo);
+      font-weight: bold;
+      opacity: 0;
+      animation: entrarSlogan 1.2s ease-out forwards;
+      animation-delay: 1.7s;
+    }
 
-h1{
-  margin:6px 0 4px;
-  font-size:26px;
-}
+    .extra-img {
+      width: 300px;
+      max-width: 100%;
+      background: linear-gradient(135deg, #ff6600, #e60000);
+      padding: 8px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #e60000a0;
+    }
 
-.slogan{
-  color:#ffcc00;
-  letter-spacing:2px;
-  font-size:14px;
-  margin-bottom:25px;
-}
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
 
-/* PLAYER */
-.player-box{
-  margin:35px auto;
-}
+    .left-content {
+      max-width: 450px;
+      margin: 10px;
+      flex: 1 1 450px;
+    }
 
-audio{
-  width:85%;
-  max-width:420px;
-  outline:none;
-  border-radius:30px;
-  box-shadow:0 0 25px rgba(255,204,0,.7);
-}
+    .player-box {
+      background: #fff;
+      color: var(--negro);
+      border: 3px solid var(--amarillo);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px #ffd700;
+      text-align: center;
+    }
 
-/* BOTONES */
-.buttons{
-  margin:30px 0;
-}
+    .player-box h2 {
+      color: var(--rojo);
+      margin-bottom: 10px;
+    }
 
-.buttons a{
-  display:inline-block;
-  margin:6px;
-  padding:12px 22px;
-  background:#111;
-  color:#ffcc00;
-  border:2px solid #ffcc00;
-  font-weight:600;
-  text-decoration:none;
-  border-radius:30px;
-  transition:.3s;
-}
+    audio {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-.buttons a:hover{
-  background:#ffcc00;
-  color:#000;
-}
+    .right-buttons {
+      margin: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 200px;
+      flex-shrink: 0;
+      background: linear-gradient(to bottom right, #ffe066, #ff7b7b);
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #e60000a0;
+    }
 
-/* FOOTER */
-footer{
-  margin-top:35px;
-  padding:15px;
-  font-size:13px;
-  background:rgba(0,0,0,.55);
-}
-</style>
+    .right-buttons a {
+      display: block;
+      background: #fff;
+      color: var(--rojo);
+      text-align: center;
+      padding: 12px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      box-shadow: 0 0 10px #000;
+      transition: 0.3s;
+    }
+
+    .right-buttons a:hover {
+      background: var(--amarillo);
+      color: var(--negro);
+    }
+
+    footer {
+      background-color: var(--fondo-footer);
+      padding: 15px;
+      font-size: 14px;
+      color: #ddd;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .logo-box {
+        margin-right: 10px;
+      }
+
+      .extra-img {
+        width: 200px;
+      }
+
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-content {
+        max-width: 100%;
+        flex: none;
+      }
+
+      .right-buttons {
+        max-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .right-buttons a {
+        flex: 1 1 45%;
+      }
+    }
+
+    @keyframes entrarSlogan {
+      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+      60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes rebote {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1); opacity: 1; }
+      to { transform: scale(0.7); opacity: 0; }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="logo-box">
+      <a href="https://radiostereom.com/" target="_blank">
+        <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
+      </a>
+      <div class="slogan">La Radio Papá 🎙️</div>
+    </div>
+    <img src="http://imgfz.com/i/xgID1Gn.jpeg" alt="Artistas Stereo M" class="extra-img" />
+  </header>
 
-<header>
-  <img
-    src="https://user1472.na.imgto.link/public/20260117/la-n-removebg-preview.avif"
-    alt="Radio La N 96.3 FM"
-    class="logo">
+  <div class="main-content">
+    <div class="left-content">
+      <div class="player-box">
+        <h2>🎧 Escúchanos en Vivo</h2>
+        <audio controls autoplay>
+          <source src="https://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
+          Tu navegador no soporta audio HTML5.
+        </audio>
+        <div class="song-title" id="song-title">Cargando canción...</div>
+        <script>
+          async function fetchSongTitle() {
+            try {
+              const proxyUrl = "https://api.allorigins.win/get?url=";
+              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
+              const response = await fetch(proxyUrl + targetUrl);
+              const data = await response.json();
+              const parsedData = JSON.parse(data.contents);
+              const title = parsedData.songtitle || "Sin título";
+              document.getElementById("song-title").textContent = title;
+            } catch (error) {
+              document.getElementById("song-title").textContent = "Error al cargar canción";
+            }
+          }
+          fetchSongTitle();
+          setInterval(fetchSongTitle, 5000);
+        </script>
+      </div>
+    </div>
 
-  <h1>Radio La N 96.3 FM</h1>
-  <div class="slogan">SUENA DIFERENTE</div>
-</header>
+    <div class="right-buttons">
+      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
+      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
+      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
+      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
+    </div>
+  </div>
 
-<!-- PLAYER EN VIVO -->
-<div class="player-box">
-  <audio controls autoplay>
-    <source src="https://sonic.globalstream.pro/8110/stream" type="audio/mpeg">
-    Tu navegador no soporta audio en vivo.
-  </audio>
-</div>
-
-<!-- BOTONES -->
-<div class="buttons">
-  <a href="#">📘 Facebook</a>
-  <a href="https://wa.me/51999999999">📞 WhatsApp</a>
-</div>
-
-<footer>
-  © 2026 Radio La N 96.3 FM · Diseño web: Marcony Clavijo
-</footer>
-
+  <footer>
+    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
+  </footer>
 </body>
 </html>
