@@ -3,71 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcony Radio - En Vivo</title>
+<title>Marcony Radio - Rock 80s 90s</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
 
 <style>
 body{
     margin:0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg,#111,#1f1f1f,#000);
+    font-family:'Orbitron', sans-serif;
+    background: radial-gradient(circle at top,#ff00cc,#111,#000);
     color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
     text-align:center;
+    overflow:hidden;
+}
+
+/* Fondo animado neon */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background: linear-gradient(45deg,#ff00cc,#00ffff,#ffcc00,#ff0000);
+    animation: moveBg 10s linear infinite;
+    opacity:0.15;
+}
+@keyframes moveBg{
+    0%{transform:translate(-25%,-25%) rotate(0deg);}
+    100%{transform:translate(-25%,-25%) rotate(360deg);}
 }
 
 .container{
-    width:90%;
-    max-width:400px;
-    background:rgba(255,255,255,0.05);
-    padding:30px;
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 30px rgba(0,0,0,0.6);
+    position:relative;
+    z-index:2;
+    margin-top:60px;
 }
 
+/* Logo tipo disco girando */
 .logo{
-    width:200px;
-    margin-bottom:20px;
-    border-radius:20px;
+    width:220px;
+    border-radius:50%;
+    box-shadow:0 0 40px #ff00cc;
+    animation: spin 6s linear infinite;
+}
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
 }
 
 h1{
-    margin:10px 0;
-    font-size:26px;
-    letter-spacing:1px;
+    font-size:32px;
+    margin-top:20px;
+    text-shadow:0 0 20px #ff00cc,0 0 40px #00ffff;
 }
 
-button{
-    margin:10px;
-    padding:12px 25px;
+.sub{
+    font-size:14px;
+    letter-spacing:3px;
+    margin-bottom:30px;
+    color:#ffcc00;
+}
+
+/* Botón Rock */
+.playBtn{
+    background:#ff0000;
     border:none;
-    border-radius:30px;
-    font-size:16px;
+    padding:20px 40px;
+    font-size:20px;
+    border-radius:50px;
+    color:white;
     cursor:pointer;
+    box-shadow:0 0 20px #ff0000;
     transition:0.3s;
 }
 
-.play{
-    background:#00c853;
-    color:white;
-}
-
-.stop{
-    background:#d50000;
-    color:white;
-}
-
-button:hover{
-    transform:scale(1.05);
+.playBtn:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 40px #ff0000;
 }
 
 .status{
-    margin-top:15px;
+    margin-top:20px;
     font-size:14px;
-    opacity:0.8;
+    color:#00ffff;
+}
+
+/* Responsive */
+@media(max-width:500px){
+    .logo{width:180px;}
+    h1{font-size:24px;}
+    .playBtn{padding:15px 30px;font-size:16px;}
 }
 </style>
 </head>
@@ -75,42 +99,45 @@ button:hover{
 <body>
 
 <div class="container">
-    <img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
-    
-    <h1>🎙 MARCONY RADIO</h1>
-    <p>Transmitiendo en vivo 24/7</p>
 
-    <audio id="radio" preload="none">
-        <source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
-        Tu navegador no soporta audio.
-    </audio>
+<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
 
-    <div>
-        <button class="play" onclick="playRadio()">▶ PLAY</button>
-        <button class="stop" onclick="stopRadio()">⏹ STOP</button>
-    </div>
+<h1>🎸 MARCONY RADIO</h1>
+<div class="sub">ROCK · 80s · 90s · POWER MUSIC</div>
 
-    <div class="status" id="status">Radio detenida</div>
+<audio id="radio">
+<source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
+</audio>
+
+<button class="playBtn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
+
+<div class="status" id="status">Radio Detenida</div>
+
 </div>
 
 <script>
 const radio = document.getElementById("radio");
 const statusText = document.getElementById("status");
+const button = document.querySelector(".playBtn");
 
-function playRadio(){
-    radio.load();
-    radio.play();
-    statusText.innerText = "🔴 En Vivo...";
-}
+let playing = false;
 
-function stopRadio(){
-    radio.pause();
-    radio.currentTime = 0;
-    statusText.innerText = "Radio detenida";
+function toggleRadio(){
+    if(!playing){
+        radio.play();
+        statusText.innerText = "🔴 EN VIVO - ROCKEANDO";
+        button.innerText = "⏹ DETENER RADIO";
+        playing = true;
+    }else{
+        radio.pause();
+        statusText.innerText = "Radio Detenida";
+        button.innerText = "▶ ESCUCHAR EN VIVO";
+        playing = false;
+    }
 }
 
 radio.addEventListener("error", function(){
-    statusText.innerText = "⚠ Error de conexión con el streaming";
+    statusText.innerText = "⚠ Error conectando al streaming";
 });
 </script>
 
