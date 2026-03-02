@@ -3,47 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcony Radio - Rock 80s 90s</title>
+<title>Marcony Radio - En Vivo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body{
     margin:0;
-    font-family:'Orbitron', sans-serif;
-    background: radial-gradient(circle at top,#ff00cc,#111,#000);
+    font-family:'Montserrat', sans-serif;
+    background: radial-gradient(circle at top,#1a001f,#000);
     color:white;
     text-align:center;
-    overflow:hidden;
+    overflow-x:hidden;
 }
 
-/* Fondo animado neon */
+/* Fondo animado elegante */
 body::before{
     content:"";
-    position:absolute;
+    position:fixed;
     width:200%;
     height:200%;
-    background: linear-gradient(45deg,#ff00cc,#00ffff,#ffcc00,#ff0000);
-    animation: moveBg 10s linear infinite;
-    opacity:0.15;
+    background: linear-gradient(45deg,#ff00cc,#00ffff,#ff0066,#3300ff);
+    animation: bgMove 12s linear infinite;
+    opacity:0.08;
+    z-index:0;
 }
-@keyframes moveBg{
-    0%{transform:translate(-25%,-25%) rotate(0deg);}
-    100%{transform:translate(-25%,-25%) rotate(360deg);}
+@keyframes bgMove{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
 }
 
 .container{
     position:relative;
     z-index:2;
-    margin-top:60px;
+    padding:40px 20px;
 }
 
-/* Logo tipo disco girando */
+/* Logo girando tipo vinilo */
 .logo{
     width:220px;
     border-radius:50%;
     box-shadow:0 0 40px #ff00cc;
-    animation: spin 6s linear infinite;
+    animation: spin 8s linear infinite;
 }
 @keyframes spin{
     from{transform:rotate(0deg);}
@@ -51,34 +52,34 @@ body::before{
 }
 
 h1{
-    font-size:32px;
+    font-family:'Orbitron', sans-serif;
+    font-size:30px;
     margin-top:20px;
-    text-shadow:0 0 20px #ff00cc,0 0 40px #00ffff;
+    text-shadow:0 0 20px #ff00cc;
 }
 
-.sub{
+.subtitle{
     font-size:14px;
-    letter-spacing:3px;
+    letter-spacing:2px;
+    opacity:0.8;
     margin-bottom:30px;
-    color:#ffcc00;
 }
 
-/* Botón Rock */
+/* Botón principal */
 .playBtn{
-    background:#ff0000;
+    background:#ff0066;
     border:none;
-    padding:20px 40px;
-    font-size:20px;
+    padding:18px 40px;
+    font-size:18px;
     border-radius:50px;
     color:white;
     cursor:pointer;
-    box-shadow:0 0 20px #ff0000;
+    box-shadow:0 0 25px #ff0066;
     transition:0.3s;
 }
-
 .playBtn:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 40px #ff0000;
+    transform:scale(1.08);
+    box-shadow:0 0 45px #ff0066;
 }
 
 .status{
@@ -87,11 +88,40 @@ h1{
     color:#00ffff;
 }
 
-/* Responsive */
-@media(max-width:500px){
-    .logo{width:180px;}
-    h1{font-size:24px;}
-    .playBtn{padding:15px 30px;font-size:16px;}
+/* Redes */
+.social{
+    margin-top:40px;
+}
+
+.social a{
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    border-radius:30px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.fb{
+    background:#1877f2;
+}
+
+.wa{
+    background:#25d366;
+}
+
+.social a:hover{
+    transform:scale(1.1);
+}
+
+/* Footer */
+footer{
+    margin-top:60px;
+    font-size:12px;
+    opacity:0.6;
+    padding-bottom:20px;
 }
 </style>
 </head>
@@ -102,16 +132,25 @@ h1{
 
 <img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
 
-<h1>🎸 MARCONY RADIO</h1>
-<div class="sub">ROCK · 80s · 90s · POWER MUSIC</div>
+<h1>MARCONY RADIO</h1>
+<div class="subtitle">Transmitiendo en vivo 24/7</div>
 
-<audio id="radio">
-<source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
+<audio id="radio" preload="none">
+<source src="https://radiostreaming.pro/8214/stream?nocache=" + new Date().getTime() type="audio/mpeg">
 </audio>
 
 <button class="playBtn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
 
-<div class="status" id="status">Radio Detenida</div>
+<div class="status" id="status">Radio detenida</div>
+
+<div class="social">
+<a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">📘 Facebook</a>
+<a class="wa" href="https://wa.me/51942883375" target="_blank">💬 WhatsApp</a>
+</div>
+
+<footer>
+Página creada por Marcony Clavijo
+</footer>
 
 </div>
 
@@ -124,13 +163,15 @@ let playing = false;
 
 function toggleRadio(){
     if(!playing){
+        radio.src = "https://radiostreaming.pro/8214/stream?nocache=" + new Date().getTime();
         radio.play();
-        statusText.innerText = "🔴 EN VIVO - ROCKEANDO";
-        button.innerText = "⏹ DETENER RADIO";
+        statusText.innerText = "🔴 EN VIVO";
+        button.innerText = "⏹ DETENER";
         playing = true;
     }else{
         radio.pause();
-        statusText.innerText = "Radio Detenida";
+        radio.src = "";
+        statusText.innerText = "Radio detenida";
         button.innerText = "▶ ESCUCHAR EN VIVO";
         playing = false;
     }
