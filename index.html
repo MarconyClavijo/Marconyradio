@@ -17,7 +17,7 @@ body{
     overflow:hidden;
 }
 
-/* Fondo neon animado como el anterior */
+/* Fondo neon animado */
 body::before{
     content:"";
     position:absolute;
@@ -38,11 +38,15 @@ body::before{
     margin-top:60px;
 }
 
-/* Logo girando */
+/* Logo */
 .logo{
     width:220px;
     border-radius:50%;
     box-shadow:0 0 40px #ff00cc;
+}
+
+/* Animación solo cuando esté en vivo */
+.spin{
     animation: spin 8s linear infinite;
 }
 @keyframes spin{
@@ -63,7 +67,7 @@ h1{
     color:#ffcc00;
 }
 
-/* Botón principal */
+/* Botón */
 .playBtn{
     background:#ff0000;
     border:none;
@@ -122,7 +126,8 @@ footer{
 
 <div class="container">
 
-<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
+<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" 
+class="logo" id="logo">
 
 <h1>MARCONY RADIO</h1>
 <div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
@@ -150,24 +155,32 @@ Página creada por Marcony Clavijo
 const radio = document.getElementById("radio");
 const statusText = document.getElementById("status");
 const button = document.querySelector(".playBtn");
-
-let playing = false;
+const logo = document.getElementById("logo");
 
 function toggleRadio(){
-    if(!playing){
+    if(radio.paused){
         radio.play();
-        statusText.innerText = "🔴 EN VIVO";
-        button.innerText = "⏹ DETENER";
-        playing = true;
     }else{
         radio.pause();
-        radio.currentTime = 0; // evita que acumule buffer
-        statusText.innerText = "Radio detenida";
-        button.innerText = "▶ ESCUCHAR EN VIVO";
-        playing = false;
+        radio.currentTime = 0; // limpia buffer
     }
 }
 
+/* Cuando empieza a sonar */
+radio.addEventListener("play", function(){
+    statusText.innerText = "🔴 EN VIVO";
+    button.innerText = "⏹ DETENER";
+    logo.classList.add("spin");
+});
+
+/* Cuando se pausa (aunque sea por otra pestaña) */
+radio.addEventListener("pause", function(){
+    statusText.innerText = "Radio detenida";
+    button.innerText = "▶ ESCUCHAR EN VIVO";
+    logo.classList.remove("spin");
+});
+
+/* Error */
 radio.addEventListener("error", function(){
     statusText.innerText = "⚠ Error conectando al streaming";
 });
