@@ -5,41 +5,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marcony Radio - En Vivo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
 body{
     margin:0;
-    font-family:'Montserrat', sans-serif;
-    background: radial-gradient(circle at top,#1a001f,#000);
+    font-family:'Orbitron', sans-serif;
+    background: radial-gradient(circle at top,#ff00cc,#111,#000);
     color:white;
     text-align:center;
-    overflow-x:hidden;
+    overflow:hidden;
 }
 
-/* Fondo animado elegante */
+/* Fondo neon animado como el anterior */
 body::before{
     content:"";
-    position:fixed;
+    position:absolute;
     width:200%;
     height:200%;
-    background: linear-gradient(45deg,#ff00cc,#00ffff,#ff0066,#3300ff);
-    animation: bgMove 12s linear infinite;
-    opacity:0.08;
-    z-index:0;
+    background: linear-gradient(45deg,#ff00cc,#00ffff,#ffcc00,#ff0000);
+    animation: moveBg 10s linear infinite;
+    opacity:0.12;
 }
-@keyframes bgMove{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
+@keyframes moveBg{
+    0%{transform:translate(-25%,-25%) rotate(0deg);}
+    100%{transform:translate(-25%,-25%) rotate(360deg);}
 }
 
 .container{
     position:relative;
     z-index:2;
-    padding:40px 20px;
+    margin-top:60px;
 }
 
-/* Logo girando tipo vinilo */
+/* Logo girando */
 .logo{
     width:220px;
     border-radius:50%;
@@ -52,34 +51,34 @@ body::before{
 }
 
 h1{
-    font-family:'Orbitron', sans-serif;
-    font-size:30px;
+    font-size:32px;
     margin-top:20px;
-    text-shadow:0 0 20px #ff00cc;
+    text-shadow:0 0 20px #ff00cc,0 0 40px #00ffff;
 }
 
-.subtitle{
+.sub{
     font-size:14px;
-    letter-spacing:2px;
-    opacity:0.8;
+    letter-spacing:3px;
     margin-bottom:30px;
+    color:#ffcc00;
 }
 
 /* Botón principal */
 .playBtn{
-    background:#ff0066;
+    background:#ff0000;
     border:none;
-    padding:18px 40px;
-    font-size:18px;
+    padding:20px 40px;
+    font-size:20px;
     border-radius:50px;
     color:white;
     cursor:pointer;
-    box-shadow:0 0 25px #ff0066;
+    box-shadow:0 0 25px #ff0000;
     transition:0.3s;
 }
+
 .playBtn:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 45px #ff0066;
+    transform:scale(1.1);
+    box-shadow:0 0 50px #ff0000;
 }
 
 .status{
@@ -104,24 +103,17 @@ h1{
     transition:0.3s;
 }
 
-.fb{
-    background:#1877f2;
-}
-
-.wa{
-    background:#25d366;
-}
+.fb{ background:#1877f2; }
+.wa{ background:#25d366; }
 
 .social a:hover{
     transform:scale(1.1);
 }
 
-/* Footer */
 footer{
-    margin-top:60px;
+    margin-top:50px;
     font-size:12px;
     opacity:0.6;
-    padding-bottom:20px;
 }
 </style>
 </head>
@@ -133,10 +125,10 @@ footer{
 <img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
 
 <h1>MARCONY RADIO</h1>
-<div class="subtitle">Transmitiendo en vivo 24/7</div>
+<div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
 
-<audio id="radio" preload="none">
-<source src="https://radiostreaming.pro/8214/stream?nocache=" + new Date().getTime() type="audio/mpeg">
+<audio id="radio">
+<source src="https://radiostreaming.pro/8214/stream" type="audio/mpeg">
 </audio>
 
 <button class="playBtn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
@@ -163,14 +155,13 @@ let playing = false;
 
 function toggleRadio(){
     if(!playing){
-        radio.src = "https://radiostreaming.pro/8214/stream?nocache=" + new Date().getTime();
         radio.play();
         statusText.innerText = "🔴 EN VIVO";
         button.innerText = "⏹ DETENER";
         playing = true;
     }else{
         radio.pause();
-        radio.src = "";
+        radio.currentTime = 0; // evita que acumule buffer
         statusText.innerText = "Radio detenida";
         button.innerText = "▶ ESCUCHAR EN VIVO";
         playing = false;
