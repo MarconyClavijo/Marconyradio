@@ -1,253 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Radio Stereo M 101.5 FM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --rojo: #e60000;
-      --amarillo: #ffd700;
-      --negro: #111;
-      --blanco: #fff;
-      --celeste: #0088cc;
-      --fondo-footer: #222;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcony Radio - En Vivo</title>
 
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background: linear-gradient(to bottom, var(--celeste), #f44336);
-      color: var(--blanco);
-    }
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#111,#1f1f1f,#000);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+}
 
-    header {
-      display: flex;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: var(--amarillo);
-      color: var(--negro);
-    }
+.container{
+    width:90%;
+    max-width:400px;
+    background:rgba(255,255,255,0.05);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
 
-    .logo-box {
-      text-align: center;
-      margin-right: 20px;
-    }
+.logo{
+    width:200px;
+    margin-bottom:20px;
+    border-radius:20px;
+}
 
-    header img.logo {
-      width: 120px;
-      display: block;
-      animation: rebote 2s infinite ease-in-out;
-    }
+h1{
+    margin:10px 0;
+    font-size:26px;
+    letter-spacing:1px;
+}
 
-    .slogan {
-      margin-top: 8px;
-      font-size: 1em;
-      color: var(--rojo);
-      font-weight: bold;
-      opacity: 0;
-      animation: entrarSlogan 1.2s ease-out forwards;
-      animation-delay: 1.7s;
-    }
+button{
+    margin:10px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-    .extra-img {
-      width: 300px;
-      max-width: 100%;
-      background: linear-gradient(135deg, #ff6600, #e60000);
-      padding: 8px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #e60000a0;
-    }
+.play{
+    background:#00c853;
+    color:white;
+}
 
-    .main-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-    }
+.stop{
+    background:#d50000;
+    color:white;
+}
 
-    .left-content {
-      max-width: 450px;
-      margin: 10px;
-      flex: 1 1 450px;
-    }
+button:hover{
+    transform:scale(1.05);
+}
 
-    .player-box {
-      background: #fff;
-      color: var(--negro);
-      border: 3px solid var(--amarillo);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px #ffd700;
-      text-align: center;
-    }
-
-    .player-box h2 {
-      color: var(--rojo);
-      margin-bottom: 10px;
-    }
-
-    audio {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .right-buttons {
-      margin: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      max-width: 200px;
-      flex-shrink: 0;
-      background: linear-gradient(to bottom right, #ffe066, #ff7b7b);
-      padding: 15px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #e60000a0;
-    }
-
-    .right-buttons a {
-      display: block;
-      background: #fff;
-      color: var(--rojo);
-      text-align: center;
-      padding: 12px 15px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      box-shadow: 0 0 10px #000;
-      transition: 0.3s;
-    }
-
-    .right-buttons a:hover {
-      background: var(--amarillo);
-      color: var(--negro);
-    }
-
-    footer {
-      background-color: var(--fondo-footer);
-      padding: 15px;
-      font-size: 14px;
-      color: #ddd;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    @media screen and (max-width: 768px) {
-      header {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .logo-box {
-        margin-right: 10px;
-      }
-
-      .extra-img {
-        width: 200px;
-      }
-
-      .main-content {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .left-content {
-        max-width: 100%;
-        flex: none;
-      }
-
-      .right-buttons {
-        max-width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .right-buttons a {
-        flex: 1 1 45%;
-      }
-    }
-
-    @keyframes entrarSlogan {
-      0% { opacity: 0; transform: translateY(30px) scale(0.9); }
-      60% { opacity: 1; transform: translateY(-5px) scale(1.05); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes rebote {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes zoomIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      70% { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes zoomOut {
-      from { transform: scale(1); opacity: 1; }
-      to { transform: scale(0.7); opacity: 0; }
-    }
-  </style>
+.status{
+    margin-top:15px;
+    font-size:14px;
+    opacity:0.8;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <div class="logo-box">
-      <a href="https://radiostereom.com/" target="_blank">
-        <img src="https://i.postimg.cc/L8bjb6K5/1687464033296.png" alt="Logo Stereo M" class="logo" />
-      </a>
-      <div class="slogan">La Radio Papá 🎙️</div>
-    </div>
-    <img src="http://imgfz.com/i/xgID1Gn.jpeg" alt="Artistas Stereo M" class="extra-img" />
-  </header>
 
-  <div class="main-content">
-    <div class="left-content">
-      <div class="player-box">
-        <h2>🎧 Escúchanos en Vivo</h2>
-        <audio controls autoplay>
-          <source src="https://sonic.globalstream.pro/8108/stream" type="audio/mpeg">
-          Tu navegador no soporta audio HTML5.
-        </audio>
-        <div class="song-title" id="song-title">Cargando canción...</div>
-        <script>
-          async function fetchSongTitle() {
-            try {
-              const proxyUrl = "https://api.allorigins.win/get?url=";
-              const targetUrl = encodeURIComponent("http://sonic.globalstream.pro:8108/stats?sid=1&json=1&nocache=" + Date.now());
-              const response = await fetch(proxyUrl + targetUrl);
-              const data = await response.json();
-              const parsedData = JSON.parse(data.contents);
-              const title = parsedData.songtitle || "Sin título";
-              document.getElementById("song-title").textContent = title;
-            } catch (error) {
-              document.getElementById("song-title").textContent = "Error al cargar canción";
-            }
-          }
-          fetchSongTitle();
-          setInterval(fetchSongTitle, 5000);
-        </script>
-      </div>
+<div class="container">
+    <img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo">
+    
+    <h1>🎙 MARCONY RADIO</h1>
+    <p>Transmitiendo en vivo 24/7</p>
+
+    <audio id="radio" preload="none">
+        <source src="https://radiostreaming.pro:8214/stream" type="audio/mpeg">
+        Tu navegador no soporta audio.
+    </audio>
+
+    <div>
+        <button class="play" onclick="playRadio()">▶ PLAY</button>
+        <button class="stop" onclick="stopRadio()">⏹ STOP</button>
     </div>
 
-    <div class="right-buttons">
-      <a href="https://play.google.com/store/apps/details?id=com.innovatel.radiostereom" target="_blank">📲 Descarga la App</a>
-      <a href="https://www.facebook.com/share/1Dib9eQUFD/" target="_blank">📘 Facebook</a>
-      <a href="https://wa.me/51984412853" target="_blank">🎤 WhatsApp Oyentes</a>
-      <a href="https://wa.me/51942883375" target="_blank">📢 Publicidad Aquí</a>
-    </div>
-  </div>
+    <div class="status" id="status">Radio detenida</div>
+</div>
 
-  <footer>
-    Diseño y desarrollo web por Marcony Clavijo | Innovación que conecta.
-  </footer>
+<script>
+const radio = document.getElementById("radio");
+const statusText = document.getElementById("status");
+
+function playRadio(){
+    radio.load();
+    radio.play();
+    statusText.innerText = "🔴 En Vivo...";
+}
+
+function stopRadio(){
+    radio.pause();
+    radio.currentTime = 0;
+    statusText.innerText = "Radio detenida";
+}
+
+radio.addEventListener("error", function(){
+    statusText.innerText = "⚠ Error de conexión con el streaming";
+});
+</script>
+
 </body>
 </html>
