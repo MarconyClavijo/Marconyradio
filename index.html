@@ -8,117 +8,111 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
 <style>
+
 body{
-    margin:0;
-    font-family:'Orbitron', sans-serif;
-    background: radial-gradient(circle at top,#ff00cc,#111,#000);
-    color:white;
-    text-align:center;
-    overflow:hidden;
+margin:0;
+font-family:'Orbitron',sans-serif;
+background: radial-gradient(circle at top,#ff00cc,#111,#000);
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+text-align:center;
 }
 
-/* Fondo neon animado */
-body::before{
-    content:"";
-    position:absolute;
-    width:200%;
-    height:200%;
-    background: linear-gradient(45deg,#ff00cc,#00ffff,#ffcc00,#ff0000);
-    animation: moveBg 10s linear infinite;
-    opacity:0.12;
-}
-@keyframes moveBg{
-    0%{transform:translate(-25%,-25%) rotate(0deg);}
-    100%{transform:translate(-25%,-25%) rotate(360deg);}
-}
+/* contenedor */
 
 .container{
-    position:relative;
-    z-index:2;
-    margin-top:60px;
+max-width:450px;
+width:90%;
 }
 
-/* Logo */
+/* logo */
+
 .logo{
-    width:220px;
-    border-radius:50%;
-    box-shadow:0 0 40px #ff00cc;
+width:200px;
+border-radius:50%;
+box-shadow:0 0 30px #ff00cc;
+margin-bottom:20px;
 }
 
-/* Animación solo cuando esté en vivo */
+/* gira cuando suena */
+
 .spin{
-    animation: spin 8s linear infinite;
+animation:spin 8s linear infinite;
 }
+
 @keyframes spin{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
 h1{
-    font-size:32px;
-    margin-top:20px;
-    text-shadow:0 0 20px #ff00cc,0 0 40px #00ffff;
+margin:10px 0;
+font-size:30px;
 }
 
 .sub{
-    font-size:14px;
-    letter-spacing:3px;
-    margin-bottom:30px;
-    color:#ffcc00;
+font-size:13px;
+letter-spacing:2px;
+color:#ffcc00;
+margin-bottom:30px;
 }
 
-/* Botón */
+/* boton */
+
 .playBtn{
-    background:#ff0000;
-    border:none;
-    padding:20px 40px;
-    font-size:20px;
-    border-radius:50px;
-    color:white;
-    cursor:pointer;
-    box-shadow:0 0 25px #ff0000;
-    transition:0.3s;
+background:#ff0000;
+border:none;
+padding:18px 35px;
+font-size:18px;
+border-radius:40px;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff0000;
+transition:.3s;
 }
 
 .playBtn:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 50px #ff0000;
+transform:scale(1.08);
 }
 
 .status{
-    margin-top:20px;
-    font-size:14px;
-    color:#00ffff;
+margin-top:20px;
+font-size:14px;
+color:#00ffff;
 }
 
-/* Redes */
+.song{
+margin-top:10px;
+color:#ffcc00;
+font-size:15px;
+}
+
 .social{
-    margin-top:40px;
+margin-top:35px;
 }
 
 .social a{
-    display:inline-block;
-    margin:10px;
-    padding:12px 25px;
-    border-radius:30px;
-    text-decoration:none;
-    color:white;
-    font-size:14px;
-    transition:0.3s;
+display:inline-block;
+margin:6px;
+padding:10px 20px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+font-size:14px;
 }
 
-.fb{ background:#1877f2; }
-.wa{ background:#25d366; }
-
-.social a:hover{
-    transform:scale(1.1);
-}
+.fb{background:#1877f2;}
+.wa{background:#25d366;}
 
 footer{
-    margin-top:50px;
-    font-size:12px;
-    opacity:0.6;
+margin-top:40px;
+font-size:12px;
+opacity:.6;
 }
+
 </style>
 </head>
 
@@ -126,23 +120,31 @@ footer{
 
 <div class="container">
 
-<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" 
-class="logo" id="logo">
+<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo" id="logo">
 
 <h1>MARCONY RADIO</h1>
+
 <div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
 
-<audio id="radio">
-<source src="https://radiostreaming.pro/8216/stream" type="audio/mpeg">
-</audio>
+<audio id="radio"></audio>
 
-<button class="playBtn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
+<button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
 
 <div class="status" id="status">Radio detenida</div>
 
+<div class="song">
+🎵 <span id="sonic_title">Cargando canción...</span>
+</div>
+
+<!-- Script del servidor para canciones -->
+<script id="sonic_js" data-port="8216" src="https://radiostreaming.pro/cp/widgets.js?r=846"></script>
+
 <div class="social">
-<a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">📘 Facebook</a>
-<a class="wa" href="https://wa.me/51942883375" target="_blank">💬 WhatsApp</a>
+
+<a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">Facebook</a>
+
+<a class="wa" href="https://wa.me/51942883375" target="_blank">WhatsApp</a>
+
 </div>
 
 <footer>
@@ -152,38 +154,70 @@ Página creada por Marcony Clavijo
 </div>
 
 <script>
-const radio = document.getElementById("radio");
-const statusText = document.getElementById("status");
-const button = document.querySelector(".playBtn");
-const logo = document.getElementById("logo");
+
+const radio=document.getElementById("radio");
+const statusText=document.getElementById("status");
+const button=document.getElementById("btn");
+const logo=document.getElementById("logo");
+
+let playing=false;
+let manualStop=false;
 
 function toggleRadio(){
-    if(radio.paused){
-        radio.play();
-    }else{
-        radio.pause();
-        radio.currentTime = 0; // limpia buffer
-    }
+
+if(!playing){
+
+radio.src="https://radiostreaming.pro/8216/stream?"+Date.now();
+
+radio.play();
+
+playing=true;
+manualStop=false;
+
+}else{
+
+manualStop=true;
+
+radio.pause();
+
+radio.src="";
+
+playing=false;
+
+statusText.innerText="Radio detenida";
+
+button.innerText="▶ ESCUCHAR EN VIVO";
+
+logo.classList.remove("spin");
+
 }
 
-/* Cuando empieza a sonar */
-radio.addEventListener("play", function(){
-    statusText.innerText = "🔴 EN VIVO";
-    button.innerText = "⏹ DETENER";
-    logo.classList.add("spin");
+}
+
+/* cuando empieza */
+
+radio.addEventListener("play",function(){
+
+statusText.innerText="🔴 EN VIVO";
+
+button.innerText="⏹ DETENER";
+
+logo.classList.add("spin");
+
 });
 
-/* Cuando se pausa (aunque sea por otra pestaña) */
-radio.addEventListener("pause", function(){
-    statusText.innerText = "Radio detenida";
-    button.innerText = "▶ ESCUCHAR EN VIVO";
-    logo.classList.remove("spin");
+/* error real */
+
+radio.addEventListener("error",function(){
+
+if(!manualStop){
+
+statusText.innerText="⚠ Error conectando al streaming";
+
+}
+
 });
 
-/* Error */
-radio.addEventListener("error", function(){
-    statusText.innerText = "⚠ Error conectando al streaming";
-});
 </script>
 
 </body>
