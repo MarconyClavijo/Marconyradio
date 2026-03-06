@@ -5,67 +5,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Marcony Radio - En Vivo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-
 body{
 margin:0;
 font-family:'Orbitron',sans-serif;
-background: radial-gradient(circle at top,#ff00cc,#111,#000);
+background:radial-gradient(circle at top,#ff00cc,#111,#000);
 color:white;
 display:flex;
 align-items:center;
 justify-content:center;
-height:100vh;
+min-height:100vh;
 text-align:center;
 }
 
-/* contenedor */
-
 .container{
-max-width:450px;
 width:90%;
+max-width:420px;
 }
 
-/* logo */
+/* LOGO */
 
 .logo{
-width:200px;
+width:180px;
 border-radius:50%;
-box-shadow:0 0 30px #ff00cc;
-margin-bottom:20px;
+box-shadow:0 0 25px #ff00cc;
+margin-bottom:15px;
 }
-
-/* gira cuando suena */
 
 .spin{
 animation:spin 8s linear infinite;
 }
 
 @keyframes spin{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
+from{transform:rotate(0)}
+to{transform:rotate(360deg)}
 }
+
+/* TITULOS */
 
 h1{
 margin:10px 0;
-font-size:30px;
+font-size:28px;
 }
 
 .sub{
 font-size:13px;
-letter-spacing:2px;
 color:#ffcc00;
-margin-bottom:30px;
+letter-spacing:2px;
+margin-bottom:25px;
 }
 
-/* boton */
+/* BOTON */
 
 .playBtn{
 background:#ff0000;
 border:none;
-padding:18px 35px;
+padding:16px 35px;
 font-size:18px;
 border-radius:40px;
 color:white;
@@ -79,40 +76,105 @@ transform:scale(1.08);
 }
 
 .status{
-margin-top:20px;
+margin-top:15px;
 font-size:14px;
 color:#00ffff;
 }
 
+/* CANCION */
+
 .song{
 margin-top:10px;
-color:#ffcc00;
 font-size:15px;
+color:#ffcc00;
 }
 
+/* PORTADA */
+
+.cover{
+margin-top:20px;
+width:200px;
+height:200px;
+border-radius:10px;
+object-fit:cover;
+box-shadow:0 0 20px #000;
+}
+
+/* HISTORIAL */
+
+.history{
+margin-top:20px;
+font-size:13px;
+text-align:left;
+}
+
+.history h3{
+font-size:14px;
+margin-bottom:5px;
+color:#00ffff;
+}
+
+.history ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.history li{
+margin-bottom:3px;
+opacity:.8;
+}
+
+/* ECUALIZADOR */
+
+.eq{
+display:flex;
+justify-content:center;
+gap:4px;
+margin-top:20px;
+height:20px;
+}
+
+.eq span{
+width:4px;
+background:#00ffff;
+animation:eq 1s infinite ease-in-out;
+}
+
+.eq span:nth-child(2){animation-delay:.2s}
+.eq span:nth-child(3){animation-delay:.4s}
+.eq span:nth-child(4){animation-delay:.6s}
+.eq span:nth-child(5){animation-delay:.8s}
+
+@keyframes eq{
+0%,100%{height:5px}
+50%{height:20px}
+}
+
+/* REDES */
+
 .social{
-margin-top:35px;
+margin-top:25px;
 }
 
 .social a{
 display:inline-block;
-margin:6px;
-padding:10px 20px;
+margin:5px;
+padding:9px 18px;
 border-radius:25px;
 text-decoration:none;
 color:white;
-font-size:14px;
+font-size:13px;
 }
 
-.fb{background:#1877f2;}
-.wa{background:#25d366;}
+.fb{background:#1877f2}
+.wa{background:#25d366}
 
 footer{
-margin-top:40px;
-font-size:12px;
+margin-top:30px;
+font-size:11px;
 opacity:.6;
 }
-
 </style>
 </head>
 
@@ -120,7 +182,8 @@ opacity:.6;
 
 <div class="container">
 
-<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png" class="logo" id="logo">
+<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png"
+class="logo" id="logo">
 
 <h1>MARCONY RADIO</h1>
 
@@ -136,15 +199,22 @@ opacity:.6;
 🎵 <span id="sonic_title">Cargando canción...</span>
 </div>
 
-<!-- Script del servidor para canciones -->
+<img id="cover" class="cover" src="https://via.placeholder.com/200x200?text=Marcony+Radio">
+
+<div class="eq" id="eq" style="display:none">
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<div class="history">
+<h3>Últimas canciones</h3>
+<ul id="history"></ul>
+</div>
+
 <script id="sonic_js" data-port="8216" src="https://radiostreaming.pro/cp/widgets.js?r=846"></script>
 
 <div class="social">
-
 <a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">Facebook</a>
-
 <a class="wa" href="https://wa.me/51942883375" target="_blank">WhatsApp</a>
-
 </div>
 
 <footer>
@@ -155,68 +225,94 @@ Página creada por Marcony Clavijo
 
 <script>
 
-const radio=document.getElementById("radio");
-const statusText=document.getElementById("status");
-const button=document.getElementById("btn");
-const logo=document.getElementById("logo");
+const radio=document.getElementById("radio")
+const btn=document.getElementById("btn")
+const status=document.getElementById("status")
+const logo=document.getElementById("logo")
+const eq=document.getElementById("eq")
 
-let playing=false;
-let manualStop=false;
+let playing=false
+let history=[]
 
 function toggleRadio(){
 
 if(!playing){
 
-radio.src="https://radiostreaming.pro/8216/stream?"+Date.now();
+radio.src="https://radiostreaming.pro/8216/stream?"+Date.now()
+radio.play()
 
-radio.play();
-
-playing=true;
-manualStop=false;
+playing=true
 
 }else{
 
-manualStop=true;
+radio.pause()
+radio.src=""
+playing=false
 
-radio.pause();
-
-radio.src="";
-
-playing=false;
-
-statusText.innerText="Radio detenida";
-
-button.innerText="▶ ESCUCHAR EN VIVO";
-
-logo.classList.remove("spin");
+status.innerText="Radio detenida"
+btn.innerText="▶ ESCUCHAR EN VIVO"
+logo.classList.remove("spin")
+eq.style.display="none"
 
 }
 
 }
 
-/* cuando empieza */
+radio.addEventListener("play",()=>{
 
-radio.addEventListener("play",function(){
+status.innerText="🔴 EN VIVO"
+btn.innerText="⏹ DETENER"
+logo.classList.add("spin")
+eq.style.display="flex"
 
-statusText.innerText="🔴 EN VIVO";
+})
 
-button.innerText="⏹ DETENER";
+/* detectar cambio de canción */
 
-logo.classList.add("spin");
+setInterval(()=>{
 
-});
+let song=document.getElementById("sonic_title").innerText
 
-/* error real */
+if(song && !history.includes(song)){
 
-radio.addEventListener("error",function(){
+history.unshift(song)
 
-if(!manualStop){
+if(history.length>5)history.pop()
 
-statusText.innerText="⚠ Error conectando al streaming";
+let html=""
+history.forEach(s=>{
+html+="<li>"+s+"</li>"
+})
+
+document.getElementById("history").innerHTML=html
+
+buscarCover(song)
 
 }
 
-});
+},4000)
+
+/* portada automática */
+
+function buscarCover(song){
+
+let q=encodeURIComponent(song)
+
+fetch("https://itunes.apple.com/search?term="+q+"&limit=1")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+if(data.results.length>0){
+
+document.getElementById("cover").src=data.results[0].artworkUrl100.replace("100x100","300x300")
+
+}
+
+})
+
+}
 
 </script>
 
