@@ -379,13 +379,3 @@ width:180px;
 height:180px;
 
 }
-
-#sonic_history{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-#sonic_history > *:nth-child(n+6){
-    display:none !important;
-}
