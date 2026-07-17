@@ -6,7 +6,6 @@
 <title>La Tremenda 106.5 FM</title>
 <link href="https://googleapis.com" rel="stylesheet">
 <style>
-/* DISEÑO DIRECTO INYECTADO - NO FALLA */
 body { margin:0; font-family:'Poppins',sans-serif; background:#0b0e14; color:#fff; padding-bottom:90px; text-align:center; }
 .navbar { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#0f141f; border-bottom:1px solid rgba(255,255,255,0.05); }
 .nav-logo { height:40px; object-fit:contain; }
@@ -34,22 +33,18 @@ input[type=range] { flex:1; accent-color:#00d95f; cursor:pointer; }
 </head>
 <body>
 
-<!-- Barra superior con tu logo local -->
 <div class="navbar">
     <img src="assets/logo.png" class="nav-logo" alt="La Tremenda">
     <button class="menu-btn" id="menuBtn">☰</button>
 </div>
 
-<!-- Menú Desplegable -->
 <div class="nav-menu" id="navMenu">
     <a href="https://facebook.com" target="_blank">Facebook Oficial</a>
     <a href="https://wa.me" target="_blank">Contacto WhatsApp</a>
 </div>
 
-<!-- Banner de portada local -->
 <div class="banner"></div>
 
-<!-- Contenedor del Reproductor Estático -->
 <div class="app" id="app">
     <div class="status" id="estado">🔴 EN VIVO</div>
     <div class="song"><span id="sonic_title">Cargando canción...</span></div>
@@ -58,14 +53,12 @@ input[type=range] { flex:1; accent-color:#00d95f; cursor:pointer; }
         <span>🔈</span><input type="range" min="0" max="1" step="0.01" value="1" id="volumen"><span>🔊</span>
     </div>
 
-    <!-- Historial automático del widget -->
     <div class="history">
         <h3>🎵 Últimas 5 canciones</h3>
         <div id="sonic_recent_tracks">Cargando canciones pasadas...</div>
     </div>
 </div>
 
-<!-- Barra Inferior Flotante -->
 <div class="float-player" id="floatBar">
     <div class="float-info">
         <img src="assets/logo.png" class="float-img" alt="Logo">
@@ -74,12 +67,10 @@ input[type=range] { flex:1; accent-color:#00d95f; cursor:pointer; }
     <button class="play" id="btnFloat" style="width:38px; height:38px; font-size:14px;">▶</button>
 </div>
 
-<!-- Botón Flotante de WhatsApp -->
 <a href="https://wa.me" class="whatsapp-float" target="_blank">
     <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.452 5.431 1.453 5.494 0 9.961-4.47 9.964-9.967.002-2.662-1.033-5.165-2.907-7.042C17.262 1.762 14.764 .724 12.008.724c-5.5 0-9.969 4.471-9.973 9.97-.001 1.924.501 3.805 1.458 5.41l-.997 3.637 3.731-.978zm11.391-6.163c-.305-.153-1.805-.891-2.084-.992-.279-.101-.482-.153-.684.153-.203.306-.783.992-.961 1.194-.178.203-.356.229-.661.077-.306-.152-1.291-.476-2.46-1.518-.91-.811-1.524-1.812-1.703-2.118-.178-.306-.019-.471.133-.622.137-.137.305-.356.458-.534.153-.178.203-.306.305-.51.101-.203.051-.381-.025-.533-.076-.153-.684-1.65-.937-2.257-.247-.602-.499-.522-.684-.531-.177-.008-.381-.01-.584-.01s-.533.076-.813.382c-.279.306-1.067 1.045-1.067 2.549 0 1.504 1.097 2.951 1.25 3.154.153.203 2.158 3.297 5.228 4.619.729.315 1.299.504 1.743.645.734.233 1.404.2 1.932.121.588-.088 1.805-.738 2.059-1.452.254-.715.254-1.324.178-1.452-.076-.127-.279-.203-.584-.356z"/></svg>
 </a>
 
-<!-- LÓGICA DE AUDIO DIRECTA Y SIN FALLAS -->
 <script>
 const btn = document.getElementById("btn"), btnFloat = document.getElementById("btnFloat");
 const estado = document.getElementById("estado"), app = document.getElementById("app");
@@ -92,7 +83,8 @@ menuBtn.onclick = () => { navMenu.style.display = navMenu.style.display === "fle
 function crearAudio() {
     if (audio) { audio.pause(); audio.src = ""; audio.load(); }
     audio = new Audio();
-    audio.src = "https://radiostreaming.pro";
+    // Ruta Shoutcast segura y limpia compatible con el widget y navegadores móviles
+    audio.src = "https://radiostreaming.pro;";
     audio.crossOrigin = "anonymous";
     audio.volume = vol.value;
 }
