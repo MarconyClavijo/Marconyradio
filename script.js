@@ -108,3 +108,25 @@ audio.addEventListener("pause",()=>{
 document.querySelector(".equalizer").style.opacity=.3;
 
 });
+
+setInterval(() => {
+
+    const historial = document.getElementById("sonic_history");
+
+    if (!historial) return;
+
+    let texto = historial.innerText;
+
+    if (!texto) return;
+
+    let canciones = texto.split(/\d+\.\)/).filter(x => x.trim() !== "");
+
+    historial.innerHTML = "";
+
+    canciones.slice(0,5).forEach((cancion,i)=>{
+
+        historial.innerHTML += `<div class="item-history">${i+1}. ${cancion.trim()}</div>`;
+
+    });
+
+},1500);
