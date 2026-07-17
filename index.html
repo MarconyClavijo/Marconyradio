@@ -3,318 +3,486 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marcony Radio - En Vivo</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
+<title>La Tremenda 106.5 FM</title>
+<link href="https://googleapis.com" rel="stylesheet">
 <style>
-body{
-margin:0;
-font-family:'Orbitron',sans-serif;
-background:radial-gradient(circle at top,#ff00cc,#111,#000);
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;
-text-align:center;
+:root {
+  --bg-main: #060d1a;
+  --bg-card: #0b1528;
+  --accent-yellow: #f1b80c;
+  --accent-green: #00e676;
+  --text-primary: #ffffff;
+  --text-secondary: #8fa0ba;
 }
 
-.container{
-width:90%;
-max-width:420px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* LOGO */
-
-.logo{
-width:180px;
-border-radius:50%;
-box-shadow:0 0 25px #ff00cc;
-margin-bottom:15px;
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding-bottom: 90px; /* Espacio para el reproductor flotante */
 }
 
-.spin{
-animation:spin 8s linear infinite;
+/* Barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: rgba(6, 13, 26, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-@keyframes spin{
-from{transform:rotate(0)}
-to{transform:rotate(360deg)}
+.nav-logo {
+  height: 45px;
 }
 
-/* TITULOS */
-
-h1{
-margin:10px 0;
-font-size:28px;
+.menu-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 24px;
+  cursor: pointer;
 }
 
-.sub{
-font-size:13px;
-color:#ffcc00;
-letter-spacing:2px;
-margin-bottom:25px;
+/* Contenedor Principal */
+.main-container {
+  width: 92%;
+  max-width: 480px;
+  margin: 20px auto;
 }
 
-/* BOTON */
-
-.playBtn{
-background:#ff0000;
-border:none;
-padding:16px 35px;
-font-size:18px;
-border-radius:40px;
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px #ff0000;
-transition:.3s;
+/* Sección Ahora Sonando */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-.playBtn:hover{
-transform:scale(1.08);
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background-color: var(--accent-yellow);
+  border-radius: 2px;
 }
 
-.status{
-margin-top:15px;
-font-size:14px;
-color:#00ffff;
+.live-badge {
+  font-size: 11px;
+  color: var(--accent-green);
+  background: rgba(0, 230, 118, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  margin-left: auto;
 }
 
-/* CANCION */
-
-.song{
-margin-top:10px;
-font-size:15px;
-color:#ffcc00;
+/* Tarjeta del Reproductor Estático */
+.player-card {
+  background-color: var(--bg-card);
+  border-radius: 24px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  text-align: center;
 }
 
-/* PORTADA */
-
-.cover{
-margin-top:20px;
-width:200px;
-height:200px;
-border-radius:10px;
-object-fit:cover;
-box-shadow:0 0 20px #000;
+.banner-container {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
 }
 
-/* HISTORIAL */
-
-.history{
-margin-top:20px;
-font-size:13px;
-text-align:left;
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.history h3{
-font-size:14px;
-margin-bottom:5px;
-color:#00ffff;
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
-.history ul{
-list-style:none;
-padding:0;
-margin:0;
+.song-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.history li{
-margin-bottom:3px;
-opacity:.8;
+.artist-name {
+  font-size: 14px;
+  color: var(--text-secondary);
 }
 
-/* ECUALIZADOR */
-
-.eq{
-display:flex;
-justify-content:center;
-gap:4px;
-margin-top:20px;
-height:20px;
+/* Ecualizador animado */
+.eq-mini {
+  display: flex;
+  gap: 3px;
+  height: 18px;
+  align-items: flex-end;
 }
 
-.eq span{
-width:4px;
-background:#00ffff;
-animation:eq 1s infinite ease-in-out;
+.eq-mini span {
+  width: 3px;
+  height: 3px;
+  background-color: var(--accent-yellow);
+  animation: bounce .6s infinite alternate linear;
+  animation-play-state: paused;
 }
 
-.eq span:nth-child(2){animation-delay:.2s}
-.eq span:nth-child(3){animation-delay:.4s}
-.eq span:nth-child(4){animation-delay:.6s}
-.eq span:nth-child(5){animation-delay:.8s}
+.playing .eq-mini span { animation-play-state: running; }
+.eq-mini span:nth-child(1) { animation-delay: 0.1s; }
+.eq-mini span:nth-child(2) { animation-delay: 0.4s; }
+.eq-mini span:nth-child(3) { animation-delay: 0.2s; }
+.eq-mini span:nth-child(4) { animation-delay: 0.5s; }
 
-@keyframes eq{
-0%,100%{height:5px}
-50%{height:20px}
+@keyframes bounce {
+  100% { height: 18px; }
 }
 
-/* REDES */
-
-.social{
-margin-top:25px;
+/* Programa y Progreso */
+.show-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--accent-yellow);
+  margin-bottom: 15px;
+  text-align: left;
 }
 
-.social a{
-display:inline-block;
-margin:5px;
-padding:9px 18px;
-border-radius:25px;
-text-decoration:none;
-color:white;
-font-size:13px;
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
 }
 
-.fb{background:#1877f2}
-.wa{background:#25d366}
-
-footer{
-margin-top:30px;
-font-size:11px;
-opacity:.6;
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
 }
+
+.progress-fill {
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, #00bcd4, var(--accent-yellow));
+}
+
+/* Controles */
+.controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.btn-main-play {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--accent-yellow);
+  border: none;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 15px rgba(241, 184, 12, 0.4);
+}
+
+.btn-main-play:hover { transform: scale(1.05); }
+
+.status-block {
+  text-align: left;
+  flex: 1;
+}
+
+.status-text {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.listeners-count {
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.listeners-count::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Feedback de votos */
+.vote-box {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-vote {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Historial de canciones */
+.history-section {
+  margin-top: 30px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.03);
+  padding: 10px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+.history-thumb {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.history-info {
+  flex: 1;
+  text-align: left;
+}
+
+.history-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.history-artist {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* REPRODUCTOR FLOTANTE INFERIOR */
+.floating-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(11, 21, 40, 0.95);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.floating-player.visible {
+  transform: translateY(0);
+}
+
+.float-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 70%;
+}
+
+.float-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.float-text {
+  text-align: left;
+  overflow: hidden;
+}
+
+.float-title {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.float-artist {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-float-play {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--accent-yellow);
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BOTÓN FLOTANTE DE WHATSAPP */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 85px; /* Posicionado justo encima del reproductor flotante */
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+  z-index: 1000;
+  transition: transform 0.2s;
+}
+
+.whatsapp-btn:hover { transform: scale(1.08); }
+.whatsapp-btn img { width: 30px; height: 30px; }
+
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- Navegación superior -->
+<nav class="navbar">
+  <!-- Reemplazado por el link del logo actualizado enviado -->
+  <img src="https://imgfz.com" alt="La Tremenda" class="nav-logo">
+  <button class="menu-btn">☰</button>
+</nav>
 
-<img src="https://image2url.com/r2/default/images/1772424553305-5e1866b9-0926-4d13-9fad-dae04af28c89.png"
-class="logo" id="logo">
+<div class="main-container" id="playerWrapper">
 
-<h1>MARCONY RADIO</h1>
+  <div class="section-title">
+    Ahora Sonando
+    <span class="live-badge">● EN VIVO</span>
+  </div>
 
-<div class="sub">TRANSMITIENDO EN VIVO 24/7</div>
+  <!-- Tarjeta Principal Estática -->
+  <div class="player-card">
+    <div class="banner-container">
+      <!-- Reemplazado por el link del banner/carátula enviado -->
+      <img src="https://imgfz.com" alt="Carátula" class="banner-img">
+    </div>
 
-<audio id="radio"></audio>
+    <div class="info-row">
+      <div>
+        <div class="song-title" id="songTitle">La Tierra De Mis Amores</div>
+        <div class="artist-name" id="artistName">LOS BETA 5</div>
+      </div>
+      <div class="eq-mini" id="eq">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
 
-<button class="playBtn" id="btn" onclick="toggleRadio()">▶ ESCUCHAR EN VIVO</button>
+    <div class="show-info">
+      🕒 <span id="showName">Amaneciendo con la Tremenda</span>
+    </div>
 
-<div class="status" id="status">Radio detenida</div>
+    <div class="progress-container">
+      <span>4:00 AM</span>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <span>6:00 AM</span>
+    </div>
 
-<div class="song">
-🎵 <span id="sonic_title">Cargando canción...</span>
+    <div class="controls-row">
+      <button class="btn-main-play" id="mainPlayBtn">▶</button>
+      <div class="status-block">
+        <div class="status-text" id="statusText">Escuchar en vivo</div>
+        <div class="listeners-count">3,340 oyentes</div>
+      </div>
+      <div class="vote-box">
+        <button class="btn-vote">👍 115K</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historial Reciente -->
+  <div class="history-section">
+    <div class="section-title">Sonó en La Tremenda</div>
+    <div class="history-item">
+      <!-- Usando la otra imagen enviada para el historial -->
+      <img src="https://imgfz.com" class="history-thumb">
+      <div class="history-info">
+        <div class="history-title">Viento</div>
+        <div class="history-artist">Grupo Celeste</div>
+      </div>
+      <span style="font-size:12px; color:var(--text-secondary)">Hace 4 min</span>
+    </div>
+  </div>
+
 </div>
 
-<img id="cover" class="cover" src="https://via.placeholder.com/200x200?text=Marcony+Radio">
-
-<div class="eq" id="eq" style="display:none">
-<span></span><span></span><span></span><span></span><span></span>
+<!-- REPRODUCTOR FLOTANTE INFERIOR -->
+<div class="floating-player" id="floatingPlayer">
+  <div class="float-info">
+    <img src="https://imgfz.com" class="float-thumb">
+    <div class="float-text">
+      <div class="float-title">La Tierra De Mis Amores</div>
+      <div class="float-artist">LOS BETA 5</div>
+    </div>
+  </div>
+  <button class="btn-float-play" id="floatPlayBtn">▶</button>
 </div>
 
-<div class="history">
-<h3>Últimas canciones</h3>
-<ul id="history"></ul>
-</div>
-
-<script id="sonic_js" data-port="8216" src="https://radiostreaming.pro/cp/widgets.js?r=846"></script>
-
-<div class="social">
-<a class="fb" href="https://www.facebook.com/radiomarcony" target="_blank">Facebook</a>
-<a class="wa" href="https://wa.me/51942883375" target="_blank">WhatsApp</a>
-</div>
-
-<footer>
-Página creada por Marcony Clavijo
-</footer>
-
-</div>
-
-<script>
-
-const radio=document.getElementById("radio")
-const btn=document.getElementById("btn")
-const status=document.getElementById("status")
-const logo=document.getElementById("logo")
-const eq=document.getElementById("eq")
-
-let playing=false
-let history=[]
-
-function toggleRadio(){
-
-if(!playing){
-
-radio.src="https://radiostreaming.pro/8216/stream?"+Date.now()
-radio.play()
-
-playing=true
-
-}else{
-
-radio.pause()
-radio.src=""
-playing=false
-
-status.innerText="Radio detenida"
-btn.innerText="▶ ESCUCHAR EN VIVO"
-logo.classList.remove("spin")
-eq.style.display="none"
-
-}
-
-}
-
-radio.addEventListener("play",()=>{
-
-status.innerText="🔴 EN VIVO"
-btn.innerText="⏹ DETENER"
-logo.classList.add("spin")
-eq.style.display="flex"
-
-})
-
-/* detectar cambio de canción */
-
-setInterval(()=>{
-
-let song=document.getElementById("sonic_title").innerText
-
-if(song && !history.includes(song)){
-
-history.unshift(song)
-
-if(history.length>5)history.pop()
-
-let html=""
-history.forEach(s=>{
-html+="<li>"+s+"</li>"
-})
-
-document.getElementById("history").innerHTML=html
-
-buscarCover(song)
-
-}
-
-},4000)
-
-/* portada automática */
-
-function buscarCover(song){
-
-let q=encodeURIComponent(song)
-
-fetch("https://itunes.apple.com/search?term="+q+"&limit=1")
-
-.then(r=>r.json())
-
-.then(data=>{
-
-if(data.results.length>0){
-
-document.getElementById("cover").src=data.results[0].artworkUrl100.replace("100x100","300x300")
-
-}
-
-})
-
-}
-
-</script>
-
-</body>
-</html>
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
