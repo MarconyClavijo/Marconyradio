@@ -379,3 +379,17 @@ width:180px;
 height:180px;
 
 }
+
+#sonic_history{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.item-history{
+    background:rgba(255,255,255,.12);
+    padding:12px;
+    border-radius:12px;
+    color:#fff;
+    font-weight:600;
+}
