@@ -107,6 +107,8 @@ audio.addEventListener("pause",()=>{
 
 document.querySelector(".equalizer").style.opacity=.3;
 
+});
+
 setInterval(() => {
 
 const historial = document.querySelector("#sonic_history");
