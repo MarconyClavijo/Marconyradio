@@ -31,8 +31,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:15px 8%;
-background: linear-gradient(90deg,#8B0000,#ff7a00);
-backdrop-filter: none;
+background: linear-gradient(90deg, #ffffff 0%, #ffe066 50%, #ffcc00 100%);
 }
 
 .logo img{
