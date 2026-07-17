@@ -1,69 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Tremenda 106.5 FM</title>
-<link href="https://googleapis.com" rel="stylesheet">
-<style>
-body { margin:0; font-family:'Poppins',sans-serif; background:#0b0e14; color:#fff; padding-bottom:30px; text-align:center; }
-/* BARRA SUPERIOR */
-.navbar { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#0f141f; border-bottom:1px solid rgba(255,255,255,0.05); }
-.nav-logo-text { font-size:18px; font-weight:900; color:#fff; }
-.nav-logo-text span { color:#00d95f; }
-.menu-btn { font-size:24px; cursor:pointer; background:none; border:none; color:#fff; }
-/* BANNER DE FONDO */
-.banner { width:100%; height:140px; background:linear-gradient(rgba(0,0,0,0.2),#0b0e14), url('https://imgfz.com') no-repeat center center; background-size:cover; }
-/* CONTENEDOR PRINCIPAL */
-.app { max-width:400px; margin:-30px auto 20px auto; width:90%; background:rgba(20,26,38,0.95); border-radius:24px; padding:25px 20px; box-shadow:0 15px 35px rgba(0,0,0,0.6); box-sizing:border-box; }
-.status { color:#00d95f; font-size:12px; font-weight:900; margin-bottom:15px; letter-spacing:1px; }
-.song { font-size:15px; font-weight:600; margin-bottom:20px; color:#fff; }
-/* REPRODUCTOR NATIVO SEGURO (A PRUEBA DE BLOQUEOS) */
-audio { width:100%; margin-top:10px; border-radius:30px; background:#f1f3f4; }
-/* SECCIÓN HISTORIAL DE CANCIONES */
-.history { text-align:left; margin-top:25px; background:rgba(255,255,255,0.03); padding:15px; border-radius:15px; }
-.history h3 { font-size:13px; margin:0 0 12px 0; color:#00d95f; text-transform:uppercase; }
-/* Adaptación automática para la tabla que genera el script externo */
-.sonic_recent_tracks, table { width:100% !important; border-collapse:collapse; }
-.sonic_recent_tracks td, tr { padding:8px 0; font-size:12px; border-bottom:1px solid rgba(255,255,255,0.05); color:rgba(255,255,255,0.8); }
-/* WHATSAPP FLOTANTE */
-.whatsapp-float { position:fixed; bottom:20px; right:20px; width:52px; height:52px; background:#25d366; border-radius:50%; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 15px rgba(0,0,0,0.4); z-index:998; }
-.whatsapp-float svg { width:26px; height:26px; fill:#fff; }
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Radio La Tremenda 106.5 FM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
 
-<!-- Navegación superior -->
-<div class="navbar">
-    <div class="nav-logo-text">📻 LA TREMENDA <span>106.5</span></div>
-    <button class="menu-btn" onclick="window.open('https://facebook.com')">☰</button>
+<header>
+
+<div class="logo">
+
+<img src="assets/logo.png">
+
 </div>
 
-<!-- Banner Oficial -->
-<div class="banner"></div>
+<nav>
 
-<!-- Interfaz del Reproductor Seguro -->
-<div class="app">
-    <div class="status">🔴 TRANSMITIENDO EN VIVO</div>
-    <div class="song"><span id="sonic_title">Cargando canción actual...</span></div>
-    
-    <!-- Reproductor de audio HTML5 directo sin fallas de ejecución -->
-    <audio controls preload="auto" src="https://radiostreaming.pro"></audio>
+<a href="#">Inicio</a>
 
-    <!-- Historial conectado al sistema de radiostreaming.pro -->
-    <div class="history">
-        <h3>🎵 Últimas canciones sonadas</h3>
-        <div id="sonic_recent_tracks">Cargando historial de transmisión...</div>
-    </div>
+<a href="#radio">En Vivo</a>
+
+<a href="#historial">Historial</a>
+
+<a href="https://www.radiolatremenda.uno" target="_blank">Web</a>
+
+</nav>
+
+</header>
+
+<section class="banner">
+
+<img src="assets/banner.png">
+
+</section>
+
+<section id="radio" class="player">
+
+<div class="glass">
+
+<h1>
+
+LA TREMENDA
+
+<span>106.5 FM</span>
+
+</h1>
+
+<div class="cover">
+
+<img id="cover"
+src="assets/default.jpg">
+
 </div>
 
-<!-- Botón de WhatsApp Flotante -->
-<a href="https://wa.me" class="whatsapp-float" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.452 5.431 1.453 5.494 0 9.961-4.47 9.964-9.967.002-2.662-1.033-5.165-2.907-7.042C17.262 1.762 14.764 .724 12.008.724c-5.5 0-9.969 4.471-9.973 9.97-.001 1.924.501 3.805 1.458 5.41l-.997 3.637 3.731-.978zm11.391-6.163c-.305-.153-1.805-.891-2.084-.992-.279-.101-.482-.153-.684.153-.203.306-.783.992-.961 1.194-.178.203-.356.229-.661.077-.306-.152-1.291-.476-2.46-1.518-.91-.811-1.524-1.812-1.703-2.118-.178-.306-.019-.471.133-.622.137-.137.305-.356.458-.534.153-.178.203-.306.305-.51.101-.203.051-.381-.025-.533-.076-.153-.684-1.65-.937-2.257-.247-.602-.499-.522-.684-.531-.177-.008-.381-.01-.584-.01s-.533.076-.813.382c-.279.306-1.067 1.045-1.067 2.549 0 1.504 1.097 2.951 1.25 3.154.153.203 2.158 3.297 5.228 4.619.729.315 1.299.504 1.743.645.734.233 1.404.2 1.932.121.588-.088 1.805-.738 2.059-1.452.254-.715.254-1.324.178-1.452-.076-.127-.279-.203-.584-.356z"/></svg>
+<h2 id="song">
+
+Cargando canción...
+
+</h2>
+
+<h3 id="artist">
+
+Esperando transmisión
+
+</h3>
+
+<button id="play">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+<audio id="audio">
+
+<source src="https://radiostreaming.pro/8238/stream">
+
+</audio>
+
+<div class="volume">
+
+<input
+type="range"
+min="0"
+max="1"
+step="0.01"
+value="1"
+id="volume">
+
+</div>
+
+<div class="equalizer">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="historial">
+
+<h2>
+
+Últimas Canciones
+
+</h2>
+
+<div class="history">
+
+<div id="history1"></div>
+
+<div id="history2"></div>
+
+<div id="history3"></div>
+
+<div id="history4"></div>
+
+<div id="history5"></div>
+
+</div>
+
+</section>
+
+<section class="social">
+
+<a
+href="https://www.facebook.com/profile.php?id=61585616422921"
+target="_blank">
+
+<i class="fab fa-facebook"></i>
+
+Facebook
+
 </a>
 
-<!-- Script oficial de radiostreaming.pro para inyectar títulos e historial automáticamente -->
-<script id='sonic_js' data-port='8238' src='https://radiostreaming.pro'></script>
+<a
+href="https://wa.me/51942883375"
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+WhatsApp
+
+</a>
+
+</section>
+
+<footer>
+
+© 2025
+
+Radio La Tremenda 106.5 FM
+
+<br>
+
+www.radiolatremenda.uno
+
+</footer>
+
+<script src="script.js"></script>
+
+<script id="sonic_js"
+
+data-port="8238"
+
+src="https://radiostreaming.pro/cp/widgets.js">
+
+</script>
 
 </body>
+
 </html>
