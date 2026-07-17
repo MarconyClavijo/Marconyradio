@@ -4,25 +4,24 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Radio La Tremenda 106.5 FM</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
 <div class="logo">
 
@@ -30,17 +29,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </div>
 
-<nav>
+<div class="menu">
 
-<a href="#">Inicio</a>
+<i class="fa-solid fa-bars"></i>
 
-<a href="#radio">En Vivo</a>
-
-<a href="#historial">Historial</a>
-
-<a href="https://www.radiolatremenda.uno" target="_blank">Web</a>
-
-</nav>
+</div>
 
 </header>
 
@@ -50,22 +43,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </section>
 
-<section id="radio" class="player">
+<section class="player-card">
 
-<div class="glass">
+<div class="live">
 
-<h1>
+<span class="dot"></span>
 
-LA TREMENDA
+EN VIVO
 
-<span>106.5 FM</span>
+</div>
 
-</h1>
+<div id="cover" class="cover">
 
-<div class="cover">
-
-<img id="cover"
-src="assets/default.jpg">
+<img src="assets/default.jpg">
 
 </div>
 
@@ -75,11 +65,37 @@ Cargando canción...
 
 </h2>
 
-<h3 id="artist">
+<p id="artist">
 
-Esperando transmisión
+Esperando transmisión...
 
-</h3>
+</p>
+
+<div class="programa">
+
+<i class="fa-solid fa-microphone"></i>
+
+<span id="dj">
+
+Radio La Tremenda
+
+</span>
+
+</div>
+
+<div class="listeners">
+
+<i class="fa-solid fa-headphones"></i>
+
+<span id="listeners">
+
+0 Oyentes
+
+</span>
+
+</div>
+
+<div class="controls">
 
 <button id="play">
 
@@ -87,101 +103,89 @@ Esperando transmisión
 
 </button>
 
+<input
+type="range"
+id="volume"
+min="0"
+max="1"
+step="0.01"
+value="1">
+
+</div>
+
 <audio id="audio">
 
 <source src="https://radiostreaming.pro/8238/stream">
 
 </audio>
 
-<div class="volume">
-
-<input
-type="range"
-min="0"
-max="1"
-step="0.01"
-value="1"
-id="volume">
-
-</div>
-
-<div class="equalizer">
-
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-
-</div>
-
-</div>
-
 </section>
 
-<section id="historial">
+<section class="history">
 
 <h2>
 
-Últimas Canciones
+SONÓ EN LA TREMENDA
 
 </h2>
 
-<div class="history">
+<div id="history">
 
-<div id="history1"></div>
-
-<div id="history2"></div>
-
-<div id="history3"></div>
-
-<div id="history4"></div>
-
-<div id="history5"></div>
+Cargando historial...
 
 </div>
 
 </section>
 
-<section class="social">
+<div class="mini-player">
 
-<a
-href="https://www.facebook.com/profile.php?id=61585616422921"
-target="_blank">
+<div class="mini-cover">
 
-<i class="fab fa-facebook"></i>
+<img id="miniArt"
 
-Facebook
+src="assets/default.jpg">
 
-</a>
+</div>
 
-<a
+<div class="mini-info">
+
+<div id="miniSong">
+
+Radio La Tremenda
+
+</div>
+
+<div id="miniArtist">
+
+106.5 FM
+
+</div>
+
+</div>
+
+<button id="miniPlay">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+</div>
+
+<a class="whatsapp"
+
 href="https://wa.me/51942883375"
+
 target="_blank">
 
 <i class="fab fa-whatsapp"></i>
 
-WhatsApp
-
 </a>
-
-</section>
-
-<footer>
-
-© 2025
-
-Radio La Tremenda 106.5 FM
-
-<br>
-
-www.radiolatremenda.uno
-
-</footer>
 
 <script src="script.js"></script>
 
-<script id="sonic_js"
+<script
+
+id="sonic_js"
 
 data-port="8238"
 
