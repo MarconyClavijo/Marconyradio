@@ -1,63 +1,383 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Tremenda 106.5 FM</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
 
-<!-- Barra superior con el logo apuntando a tu carpeta assets -->
-<div class="navbar">
-    <img src="assets/logo.png" class="nav-logo" alt="La Tremenda">
-    <button class="menu-btn" id="menuBtn">☰</button>
-</div>
+body{
 
-<!-- Menú Desplegable Oculto -->
-<div class="nav-menu" id="navMenu">
-    <a href="https://facebook.com" target="_blank">Facebook Oficial</a>
-    <a href="https://wa.me" target="_blank">Contacto WhatsApp</a>
-</div>
+background:linear-gradient(-45deg,#ff0000,#ff6a00,#ffc400,#ff3d00);
+background-size:400% 400%;
+animation:bg 12s ease infinite;
+color:#fff;
 
-<!-- Banner de portada -->
-<div class="banner"></div>
+}
 
-<!-- Contenedor del Reproductor Estático -->
-<div class="app" id="app">
-    <div class="status" id="estado">🔴 EN VIVO</div>
-    <div class="song"><span id="sonic_title">Cargando canción...</span></div>
-    <button class="play" id="btn">▶</button>
-    <div class="volume">
-        <span>🔈</span><input type="range" min="0" max="1" step="0.01" value="1" id="volumen"><span>🔊</span>
-    </div>
+@keyframes bg{
 
-    <!-- Espacio automático para las últimas 5 canciones de radiostreaming.pro -->
-    <div class="history">
-        <h3>🎵 Últimas 5 canciones</h3>
-        <div id="sonic_recent_tracks">Cargando canciones pasadas...</div>
-    </div>
-</div>
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 
-<!-- Barra Inferior Flotante con tu mini logo local -->
-<div class="float-player" id="floatBar">
-    <div class="float-info">
-        <img src="assets/logo.png" class="float-img" alt="Logo">
-        <div class="float-title" id="sonic_title_float">La Tremenda 106.5 FM</div>
-    </div>
-    <button class="play" id="btnFloat" style="width:38px; height:38px; font-size:14px;">▶</button>
-</div>
+}
 
-<!-- Botón Flotante de WhatsApp -->
-<a href="https://wa.me" class="whatsapp-float" target="_blank">
-    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.452 5.431 1.453 5.494 0 9.961-4.47 9.964-9.967.002-2.662-1.033-5.165-2.907-7.042C17.262 1.762 14.764 .724 12.008.724c-5.5 0-9.969 4.471-9.973 9.97-.001 1.924.501 3.805 1.458 5.41l-.997 3.637 3.731-.978zm11.391-6.163c-.305-.153-1.805-.891-2.084-.992-.279-.101-.482-.153-.684.153-.203.306-.783.992-.961 1.194-.178.203-.356.229-.661.077-.306-.152-1.291-.476-2.46-1.518-.91-.811-1.524-1.812-1.703-2.118-.178-.306-.019-.471.133-.622.137-.137.305-.356.458-.534.153-.178.203-.306.305-.51.101-.203.051-.381-.025-.533-.076-.153-.684-1.65-.937-2.257-.247-.602-.499-.522-.684-.531-.177-.008-.381-.01-.584-.01s-.533.076-.813.382c-.279.306-1.067 1.045-1.067 2.549 0 1.504 1.097 2.951 1.25 3.154.153.203 2.158 3.297 5.228 4.619.729.315 1.299.504 1.743.645.734.233 1.404.2 1.932.121.588-.088 1.805-.738 2.059-1.452.254-.715.254-1.324.178-1.452-.076-.127-.279-.203-.584-.356z"/></svg>
-</a>
+header{
 
-<!-- Vinculado a tu archivo script.js de GitHub -->
-<script src="script.js"></script>
+position:sticky;
+top:0;
+z-index:999;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(18px);
 
-<!-- Script externo obligatorio para el título en tiempo real -->
-<script id='sonic_js' data-port='8238' src='https://radiostreaming.pro'></script>
+}
 
-</body>
-</html>
+.logo img{
+
+height:75px;
+
+}
+
+nav{
+
+display:flex;
+gap:25px;
+
+}
+
+nav a{
+
+color:#fff;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#ffd400;
+
+}
+
+.banner{
+
+width:100%;
+padding:25px;
+
+}
+
+.banner img{
+
+width:100%;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+}
+
+.player{
+
+display:flex;
+justify-content:center;
+padding:35px;
+
+}
+
+.glass{
+
+width:420px;
+padding:35px;
+border-radius:35px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+box-shadow:0 0 35px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+.glass h1{
+
+font-size:34px;
+font-weight:900;
+
+}
+
+.glass span{
+
+color:#ffd400;
+
+}
+
+.cover{
+
+margin:20px 0;
+
+}
+
+.cover img{
+
+width:220px;
+height:220px;
+border-radius:25px;
+object-fit:cover;
+
+box-shadow:0 0 30px rgba(255,255,255,.3);
+
+}
+
+#song{
+
+font-size:22px;
+margin-top:10px;
+
+}
+
+#artist{
+
+font-size:15px;
+opacity:.8;
+margin-bottom:25px;
+
+}
+
+button{
+
+width:90px;
+height:90px;
+
+border:none;
+
+border-radius:50%;
+
+background:#00d15c;
+
+color:#fff;
+
+font-size:30px;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 0 25px rgba(0,255,0,.6);
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+}
+
+.volume{
+
+margin:25px 0;
+
+}
+
+.volume input{
+
+width:100%;
+
+}
+
+.equalizer{
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+gap:6px;
+
+height:45px;
+
+}
+
+.equalizer span{
+
+width:8px;
+
+background:#00ff66;
+
+border-radius:5px;
+
+animation:eq .8s infinite alternate;
+
+}
+
+.equalizer span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.equalizer span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+.equalizer span:nth-child(4){
+
+animation-delay:.6s;
+
+}
+
+.equalizer span:nth-child(5){
+
+animation-delay:.8s;
+
+}
+
+@keyframes eq{
+
+from{
+
+height:12px;
+
+}
+
+to{
+
+height:42px;
+
+}
+
+}
+
+#historial{
+
+padding:40px;
+
+}
+
+#historial h2{
+
+text-align:center;
+
+font-size:32px;
+
+margin-bottom:25px;
+
+}
+
+.history{
+
+max-width:700px;
+
+margin:auto;
+
+display:grid;
+
+gap:12px;
+
+}
+
+.history div{
+
+padding:18px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(15px);
+
+font-weight:600;
+
+}
+
+.social{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+padding:30px;
+
+flex-wrap:wrap;
+
+}
+
+.social a{
+
+padding:15px 28px;
+
+border-radius:40px;
+
+background:#111;
+
+color:#fff;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.social a:hover{
+
+background:#ffd400;
+
+color:#000;
+
+}
+
+footer{
+
+padding:30px;
+
+text-align:center;
+
+font-size:14px;
+
+opacity:.85;
+
+}
+
+@media(max-width:768px){
+
+header{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+nav{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.glass{
+
+width:95%;
+
+}
+
+.cover img{
+
+width:180px;
+height:180px;
+
+}
+
+}
