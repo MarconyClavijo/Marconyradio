@@ -108,19 +108,3 @@ audio.addEventListener("pause",()=>{
 document.querySelector(".equalizer").style.opacity=.3;
 
 });
-
-setInterval(() => {
-
-const historial = document.querySelector("#sonic_history");
-
-if (!historial) return;
-
-const canciones = historial.children;
-
-for (let i = 5; i < canciones.length; i++) {
-    canciones[i].style.display = "none";
-}
-
-}, 1000);
-
-});
