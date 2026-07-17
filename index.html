@@ -15,11 +15,11 @@ min-height:100vh;
 padding-bottom:100px;
 }
 
-/* BANNER PRINCIPAL MODERNIZADO */
+/* BANNER PRINCIPAL MODERNIZADO CON URL SEGURA HTTPS */
 .banner-container {
 width:100%;
 height:240px;
-background:linear-gradient(rgba(0,0,0,0.2), #0b0e14), url('http://imgfz.com') no-repeat center center;
+background:linear-gradient(rgba(0,0,0,0.3), #0b0e14), url('https://unsplash.com') no-repeat center center;
 background-size:cover;
 display:flex;
 justify-content:center;
@@ -29,7 +29,9 @@ position:relative;
 
 .logo-main {
 max-width:180px;
+max-height:140px;
 filter:drop-shadow(0 4px 15px rgba(255,255,255,0.2));
+object-fit:contain;
 }
 
 /* REPRODUCTOR ESTÁTICO PRINCIPAL */
@@ -158,7 +160,7 @@ background:rgba(15,21,32,0.96);
 backdrop-filter:blur(20px);
 border-top:1px solid rgba(255,255,255,0.08);
 padding:12px 20px;
-display:none; /* Se activa dinámicamente con scroll */
+display:none;
 justify-content:space-between;
 align-items:center;
 box-sizing:border-box;
@@ -236,7 +238,8 @@ margin:40px 0 20px 0;
 
 <!-- Sección del Banner Superior -->
 <div class="banner-container">
-    <img src="http://imgfz.com" class="logo-main" alt="Logo">
+    <!-- RECOMIENDO REMPLAZAR ESTA URL POR UNA SUBIDA DIRECTO A TU PROPIO GITHUB PARA EVITAR CAÍDAS -->
+    <img src="https://imgfz.com" class="logo-main" alt="Logo La Tremenda" onerror="this.src='https://unsplash.com'">
 </div>
 
 <!-- Contenedor Principal / Reproductor Estático -->
@@ -267,7 +270,7 @@ margin:40px 0 20px 0;
 <!-- Barra de Reproducción Flotante -->
 <div class="float-player" id="floatBar">
     <div class="float-info">
-        <img src="http://imgfz.com" class="float-img" alt="Mini Logo">
+        <img src="https://imgfz.com" class="float-img" alt="Mini Logo" onerror="this.src='https://unsplash.com'">
         <div class="float-text">
             <div class="float-title">Radio La Tremenda</div>
             <div class="float-sub" id="sonic_title_float">En Vivo</div>
@@ -299,7 +302,7 @@ function crearAudio() {
         audio.load();
     }
     audio = new Audio();
-    // Enlace SSL directo y seguro para evitar bloqueos del navegador
+    // URL forzada a Proxy Seguro SSL / HTTPS para evitar bloqueos en GitHub Pages
     audio.src = "https://radiostreaming.pro";
     audio.crossOrigin = "anonymous";
     audio.preload = "auto";
@@ -323,7 +326,8 @@ function alternarReproduccion() {
             floatBar.classList.add("playing");
             sonando = true;
         })
-        .catch(() => {
+        .catch((err) => {
+            console.log("Error de reproducción:", err);
             statusTag.textContent = "⚠️ Error de señal";
             statusTag.classList.remove("active");
             btnMain.textContent = "▶";
@@ -351,7 +355,7 @@ vol.oninput = () => {
     if (audio) audio.volume = vol.value;
 };
 
-// Controlar la aparición de la barra flotante según el scroll
+// Controlar aparición de barra flotante por scroll
 window.onscroll = () => {
     const cardRect = mainCard.getBoundingClientRect();
     if (cardRect.bottom < 0) {
@@ -362,18 +366,7 @@ window.onscroll = () => {
 };
 </script>
 
-<!-- Script para cargar metadatos de las canciones (Título en vivo) -->
+<!-- Script HTTPS seguro para metadatos del widget -->
 <script id='sonic_js' data-port='8238' src='https://radiostreaming.pro'></script>
 <script>
-// Sincronizar el título de la canción en la barra flotante alternativamente
 setInterval(() => {
-    const mainTitle = document.getElementById("sonic_title");
-    const floatTitle = document.getElementById("sonic_title_float");
-    if(mainTitle && floatTitle) {
-        floatTitle.textContent = mainTitle.textContent;
-    }
-}, 2000);
-</script>
-
-</body>
-</html>
