@@ -9,15 +9,19 @@
 body { margin:0; font-family:'Poppins',sans-serif; background:#0b0e14; color:#fff; padding-bottom:90px; }
 /* NAV SUPERIOR */
 .navbar { display:flex; justify-content:space-between; align-items:center; padding:12px 20px; background:#0f141f; border-bottom:1px solid rgba(255,255,255,0.05); }
-.nav-logo { height:32px; }
+.nav-logo { height:35px; object-fit:contain; }
 .menu-btn { font-size:24px; cursor:pointer; background:none; border:none; color:#fff; }
+/* MENÚ DESPLEGABLE */
+.nav-menu { display:none; flex-direction:column; background:#0f141f; padding:10px 20px; border-bottom:1px solid rgba(255,255,255,0.05); }
+.nav-menu a { color:#fff; text-decoration:none; padding:10px 0; font-size:14px; opacity:0.8; }
+.nav-menu a:hover { opacity:1; color:#00d95f; }
 /* BANNER */
-.banner { width:100%; height:180px; background:linear-gradient(rgba(0,0,0,0.1),#0b0e14), url('http://imgfz.com') no-repeat center center; background-size:cover; }
+.banner { width:100%; height:180px; background:linear-gradient(rgba(0,0,0,0.1),#0b0e14), url('https://imgfz.com') no-repeat center center; background-size:cover; }
 /* CONTENEDOR */
 .app { max-width:400px; margin:-40px auto 20px auto; width:90%; background:rgba(20,26,38,0.95); border-radius:24px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); text-align:center; box-sizing:border-box; }
 .status { color:#0f0; font-size:12px; font-weight:900; margin-bottom:10px; }
-.song { font-size:15px; font-weight:600; margin-bottom:15px; }
-.play { width:70px; height:70px; border-radius:50%; border:none; background:#00d95f; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 5px 15px rgba(0,217,95,0.4); }
+.song { font-size:15px; font-weight:600; margin-bottom:15px; min-height:22px; }
+.play { width:70px; height:70px; border-radius:50%; border:none; background:#00d95f; color:#fff; font-size:22px; cursor:pointer; box-shadow:0 5px 15px rgba(0,217,95,0.4); display:flex; justify-content:center; align-items:center; margin:0 auto; }
 .volume { display:flex; align-items:center; gap:8px; margin-top:15px; font-size:12px; }
 input[type=range] { flex:1; accent-color:#00d95f; }
 /* HISTORIAL DE CANCIONES */
@@ -27,9 +31,8 @@ input[type=range] { flex:1; accent-color:#00d95f; }
 /* REPRODUCTOR FLOTANTE */
 .float-player { position:fixed; bottom:0; left:0; width:100%; background:#0f141f; padding:10px 20px; display:none; justify-content:space-between; align-items:center; box-sizing:border-box; z-index:999; border-top:1px solid rgba(255,255,255,0.05); }
 .float-info { display:flex; align-items:center; gap:10px; max-width:70%; }
-.float-img { width:35px; height:35px; }
+.float-img { width:35px; height:35px; object-fit:contain; }
 .float-title { font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.float-btn { width:36px; height:36px; border-radius:50%; border:none; background:#00d95f; color:#fff; cursor:pointer; }
 /* WHATSAPP FLOTANTE */
 .whatsapp-float { position:fixed; bottom:75px; right:20px; width:52px; height:52px; background:#25d366; border-radius:50%; display:flex; justify-content:center; align-items:center; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:998; }
 .whatsapp-float svg { width:26px; height:26px; fill:#fff; }
@@ -37,10 +40,16 @@ input[type=range] { flex:1; accent-color:#00d95f; }
 </head>
 <body>
 
-<!-- Barra de navegación fija arriba -->
+<!-- Barra de navegación fija arriba con HTTPS corregido -->
 <div class="navbar">
-    <img src="http://imgfz.com" class="nav-logo" alt="Logo">
-    <button class="menu-btn">☰</button>
+    <img src="https://imgfz.com" class="nav-logo" alt="Logo">
+    <button class="menu-btn" id="menuBtn">☰</button>
+</div>
+
+<!-- Menú Desplegable -->
+<div class="nav-menu" id="navMenu">
+    <a href="https://facebook.com" target="_blank">Facebook Oficial</a>
+    <a href="https://wa.me" target="_blank">Contacto WhatsApp</a>
 </div>
 
 <!-- Banner e interfaz principal -->
@@ -53,7 +62,7 @@ input[type=range] { flex:1; accent-color:#00d95f; }
         <span>🔈</span><input type="range" min="0" max="1" step="0.01" value="1" id="volumen"><span>🔊</span>
     </div>
 
-    <!-- Lista de últimas canciones sonadas (Simulación dinámica) -->
+    <!-- Lista de últimas canciones sonadas -->
     <div class="history">
         <h3>🎵 Sonó en La Tremenda</h3>
         <div id="historial-lista">
@@ -69,10 +78,10 @@ input[type=range] { flex:1; accent-color:#00d95f; }
 <!-- Barra Inferior Flotante -->
 <div class="float-player" id="floatBar">
     <div class="float-info">
-        <img src="http://imgfz.com" class="float-img" alt="Logo">
+        <img src="https://imgfz.com" class="float-img" alt="Logo">
         <div class="float-title" id="sonic_title_float">La Tremenda 106.5 FM</div>
     </div>
-    <button class="float-btn" id="btnFloat">▶</button>
+    <button class="play" id="btnFloat" style="width:36px; height:36px; font-size:14px;">▶</button>
 </div>
 
 <!-- WhatsApp Flotante -->
@@ -84,7 +93,13 @@ input[type=range] { flex:1; accent-color:#00d95f; }
 const btn = document.getElementById("btn"), btnFloat = document.getElementById("btnFloat");
 const estado = document.getElementById("estado"), app = document.getElementById("app");
 const floatBar = document.getElementById("floatBar"), vol = document.getElementById("volumen");
+const menuBtn = document.getElementById("menuBtn"), navMenu = document.getElementById("navMenu");
 let audio = null, sonando = false;
+
+// Funcionalidad del menú hamburguesa
+menuBtn.onclick = () => {
+    navMenu.style.display = navMenu.style.display === "flex" ? "none" : "flex";
+};
 
 function crearAudio() {
     if (audio) { audio.pause(); audio.src = ""; audio.load(); }
@@ -121,14 +136,12 @@ window.onscroll = () => {
 
 <script id='sonic_js' data-port='8238' src='https://radiostreaming.pro'></script>
 <script>
-// Sincroniza el título de la canción en la barra de abajo y guarda el historial
 let ultimaCancion = "";
 setInterval(() => {
     const txt = document.getElementById("sonic_title")?.textContent;
     if (txt && document.getElementById("sonic_title_float")) {
         document.getElementById("sonic_title_float").textContent = txt;
         
-        // Agregar automáticamente al historial si cambia de tema
         if (txt !== ultimaCancion && !txt.includes("Cargando") && !txt.includes("Radio")) {
             ultimaCancion = txt;
             const lista = document.getElementById("historial-lista");
@@ -143,4 +156,3 @@ setInterval(() => {
 </script>
 </body>
 </html>
-
